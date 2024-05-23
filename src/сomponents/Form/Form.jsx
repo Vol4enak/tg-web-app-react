@@ -22,9 +22,7 @@ const Form = () => {
     return (
       () => {
         tg.offEvent("mainButtonClicked", onSendData);
-        return () => {};
-      },
-      []
+      }
     );
   });
 
