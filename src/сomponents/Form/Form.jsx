@@ -14,8 +14,8 @@ const Form = () => {
       subject,
     };
     tg.sendData(JSON.stringify(data));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    
+  }, [country, street, subject, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
