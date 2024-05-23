@@ -6,16 +6,15 @@ import ProductList from "./сomponents/ProductList/ProductList";
 import Form from "./сomponents/Form/Form";
 
 function App() {
-  const { tg } = useTelegram();
+  const {  tg } = useTelegram();
   useEffect(() => {
     tg.ready();
   }, [tg]);
 
-  const { onToggleButton } = useTelegram;
   return (
     <div className="App">
       <Header />
-      <button onClick={onToggleButton}>toggle</button>
+
       <Routes>
         <Route index element={<ProductList />} />
         <Route path={"form"} element={<Form />} />
