@@ -7,16 +7,7 @@ function App() {
     tg.ready();
   }, []);
 
-  const onClose = () => {
-    tg.close();
-  };
-
-  return (
-    <div className="App">
-      123
-      <button onClick={onClose}>закрыть</button>
-    </div>
-  );
+  return <div className="App">123</div>;
 }
 
 export default App;
