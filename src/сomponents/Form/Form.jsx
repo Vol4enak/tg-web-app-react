@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import css from "./Form.module.css";
 import { useTelegram } from "../Hooks/useTelegram";
 const Form = () => {
@@ -7,11 +7,32 @@ const Form = () => {
   const [subject, setSubject] = useState("physical");
   const { tg } = useTelegram();
 
+  const onSendData = useCallback(() => {
+    const data = {
+      country,
+      street,
+      subject,
+    };
+    tg.sendData(JSON.stringify(data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return (
+      () => {
+        tg.offEvent("mainButtonClicked", onSendData);
+        return () => {};
+      },
+      []
+    );
+  });
+
   useEffect(() => {
     tg.MainButton.setParams({
       text: "отправить данные",
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -20,7 +41,7 @@ const Form = () => {
     } else {
       tg.MainButton.show();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country, street]);
 
   const onChangeCountry = (e) => {
