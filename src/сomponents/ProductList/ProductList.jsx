@@ -1,8 +1,9 @@
 import React from "react";
 // import css from "./ProductList.module.css"
-import { useState, useCallback,useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useTelegram } from "../Hooks/useTelegram";
 import ProductItem from "./ProductItem/ProductItem";
+
 const products = [
   {
     id: "1",
@@ -70,7 +71,7 @@ const ProductList = () => {
       totalPrice: getTotalPrice(addedItems),
       queryId,
     };
-    fetch("http://85.119.146.179:8000/web-data", {
+    fetch("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/web-data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
