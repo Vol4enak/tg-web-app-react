@@ -70,13 +70,14 @@ const ProductList = () => {
       totalPrice: getTotalPrice(addedItems),
       queryId,
     };
-    fetch("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/web-data", {
+    fetch("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/webdata", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    });
+    }
+  );
   }, [addedItems, queryId]);
 
   useEffect(() => {
