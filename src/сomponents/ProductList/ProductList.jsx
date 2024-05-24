@@ -70,7 +70,7 @@ const ProductList = () => {
       totalPrice: getTotalPrice(addedItems),
       queryId,
     };
-    fetch("https://tg-web-app-node-5618b5f5f78b.herokuapp.com", {
+    fetch("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/web-data", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
