@@ -13,7 +13,9 @@
   margin: 0 auto;
   border: 1px solid blue;
 }
-
+.price {
+  color: var(--tg-theme-text-color);
+}
 .description {
   font-size: 0.8em;
   color: var(--tg-theme-text-color);
