@@ -1,9 +1,9 @@
-.list{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-.item{
-    margin-right: 10px;
-    margin-bottom: 10px;
+.item {
+  margin-right: 10px;
+  margin-bottom: 10px;
 }

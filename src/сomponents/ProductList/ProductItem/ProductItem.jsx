@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../../Button/Button";
-import css from "./ProductItem.module.css"
+import css from "./ProductItem.module.css";
 
 const ProductItem = ({ product, className, onAdd }) => {
   const onAddHandler = () => {
@@ -8,7 +8,7 @@ const ProductItem = ({ product, className, onAdd }) => {
   };
 
   return (
-    <div className={css.produc + className}>
+    <div className={css.product + " " + className}>
       <div className={css.img} />
       <div className={css.title}>{product.title}</div>
       <div className={css.description}>{product.description}</div>
