@@ -110,13 +110,10 @@ const ProductList = () => {
 
   return (
     <div className={css.list}>
-      {products.map(({id, title, price, description}) => (
+      {products.map((item) => (
         <ProductItem
-          key={id}
-          id={id}
-          title={title}
-          price={price}
-          descriptio={description}
+          key={item.id}
+          product={item}
           onAdd={onAdd}
           className={css.item}
         />
