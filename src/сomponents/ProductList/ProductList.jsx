@@ -1,5 +1,5 @@
 import React from "react";
-// import css from "./ProductList.module.css"
+import css from "./ProductList.module.css"
 import { useState, useCallback,useEffect } from "react";
 import { useTelegram } from "../Hooks/useTelegram";
 import ProductItem from "./ProductItem/ProductItem";
@@ -110,9 +110,9 @@ const ProductList = () => {
   };
 
   return (
-    <div className={"list"}>
+    <div className={css.list}>
       {products.map((item) => (
-        <ProductItem product={item} onAdd={onAdd} className={"item"} />
+        <ProductItem product={item} onAdd={onAdd} className={css.item} />
       ))}
     </div>
   );
