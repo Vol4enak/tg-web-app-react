@@ -1,18 +1,15 @@
 .product {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--tg-theme-button-color);
-  width: 170px;
+  width: 130px;
 }
 
 .img {
   background: lightgray;
+  width: 100%;
   height: 100px;
   margin: 0 auto;
-  background: var(--tg-theme-button-color);
-  @-o-viewport {
-    width: device-width;
-  }
+  border: 1px solid blue;
 }
 
 .description {

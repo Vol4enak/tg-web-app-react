@@ -1,6 +1,6 @@
 import React from "react";
-import css from "./ProductList.module.css"
-import { useState, useCallback,useEffect } from "react";
+import css from "./ProductList.module.css";
+import { useState, useCallback, useEffect } from "react";
 import { useTelegram } from "../Hooks/useTelegram";
 import ProductItem from "./ProductItem/ProductItem";
 const products = [
@@ -76,8 +76,7 @@ const ProductList = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-    }
-  );
+    });
   }, [addedItems, queryId]);
 
   useEffect(() => {
@@ -111,8 +110,15 @@ const ProductList = () => {
 
   return (
     <div className={css.list}>
-      {products.map((item) => (
-        <ProductItem product={item} onAdd={onAdd} className={css.item} />
+      {products.map((id, title, price, description) => (
+        <ProductItem
+          id={id}
+          title={title}
+          price={price}
+          descriptio={description}
+          onAdd={onAdd}
+          className={css.item}
+        />
       ))}
     </div>
   );
