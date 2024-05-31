@@ -3,7 +3,9 @@
   flex-direction: column;
   width: 130px;
 }
-
+.title {
+  color: var(--tg-theme-text-color);
+}
 .img {
   background: lightgray;
   width: 100%;
@@ -14,6 +16,7 @@
 
 .description {
   font-size: 0.8em;
+  color: var(--tg-theme-text-color);
 }
 
 .add_btn {
