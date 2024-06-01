@@ -2,7 +2,7 @@
 .navBox {
     width: 100%;
     z-index: 100;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .navBar {
    
@@ -38,7 +38,7 @@
     height: 100vh;
     background-color: rgb(154, 181, 240);
     position: absolute;
-    top: 85px;
+    top: 80px;
     right: 0px;
     z-index: -1;
 }
