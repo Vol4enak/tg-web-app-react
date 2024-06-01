@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "../../Button/Button";
+// import Button from "../../Button/Button";
 import css from "./ProductItem.module.css";
 
 const ProductItem = ({ product, className, onAdd }) => {
-  const onAddHandler = () => {
-    onAdd(product);
-  };
+  // const onAddHandler = () => {
+  //   onAdd(product);
+  // };
 
   return (
     <div className={css.product + " " + className}>
@@ -17,9 +17,9 @@ const ProductItem = ({ product, className, onAdd }) => {
           Стоимость: <b>{product.price}</b>
         </span>
       </div>
-      <Button className={css.add_btn} onClick={onAddHandler}>
+      {/* <Button className={css.add_btn} onClick={onAddHandler}>
         Добавить в корзину
-      </Button>
+      </Button> */}
     </div>
   );
 };

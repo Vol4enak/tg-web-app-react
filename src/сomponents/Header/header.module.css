@@ -1,11 +1,9 @@
 .header {
-  @-o-viewport {
-    width: device-width;
-  }
+  width: 100%;
   height: 50px;
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding-top: 20px;
 }
 .username {
   margin-left: auto;

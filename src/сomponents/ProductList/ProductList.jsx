@@ -52,6 +52,12 @@ const products = [
     price: 12000,
     description: "Зеленого цвета, теплая",
   },
+  {
+    id: "9",
+    title: "Куртка 6",
+    price: 15000,
+    description: "малина цвета, теплая",
+  },
 ];
 
 const getTotalPrice = (items = []) => {

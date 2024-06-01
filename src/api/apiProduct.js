@@ -1,10 +1,10 @@
-const getPopularMovieFromServer = () => {
-  return fetch("https://jsonplaceholder.typicode.com/todos").then(
-    (response) => response.json()
-  );
-};
+// const getPopularMovieFromServer = () => {
+//   return fetch("https://jsonplaceholder.typicode.com/todos").then(
+//     (response) => response.json()
+//   );
+// };
 
-export default getPopularMovieFromServer;
+// export default getPopularMovieFromServer;
 
 // const getPopularMovieFromServer = () => {
 //   return fetch("https://shop-21275.x9.co.ua/api/auth", {
