@@ -29,9 +29,7 @@ function NavBar() {
           ></div>
         </div>
       </nav>
-      <div
-        className={`${css.menu} ${isMenuActive ? css.visible : css.hidden}`}
-      ></div>
+      <div className={`${css.menu} ${isMenuActive ? css.visible : ""}`}></div>
     </div>
   );
 }

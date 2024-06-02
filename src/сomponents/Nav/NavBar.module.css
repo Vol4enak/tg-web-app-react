@@ -39,17 +39,17 @@
   position: absolute;
   top: 80px;
   right: 0; /* Меню будет выезжать справа */
-  transform: translateX(100%); /* Скрыть меню за пределами экрана */
-  transition: transform 0.3s ease; /* Плавный переход */
+  opacity: 0; /* Начальная непрозрачность */
+  visibility: hidden; /* Начальная невидимость */
+  transition: opacity 0.3s ease, visibility 0.3s ease; /* Плавный переход */
 }
 
 /* ------------- sliding menu ------------------ */
-.hidden {
-  transform: translateX(100%); /* Меню скрыто */
-}
+
 
 .visible {
-  transform: translateX(0);
+  opacity: 1; /* Меню видно */
+  visibility: visible; /* Меню становится видимым */
 }
 
 /* ----- animations--------- */
