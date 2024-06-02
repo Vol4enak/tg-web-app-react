@@ -27,7 +27,7 @@
   overflow: hidden;
   transition: max-height 0.5s ease;
   background-color: #f8f8f8;
-  
+
   border-radius: 4px;
   margin-top: 10px;
 }
@@ -39,6 +39,7 @@
 .menuItem {
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  color: var(--tg-theme-text-color);
 }
 
 .menuItem:last-child {
