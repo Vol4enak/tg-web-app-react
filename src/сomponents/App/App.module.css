@@ -7,6 +7,62 @@ body {
   background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+input {
+  outline: none;
+}
+
+textarea {
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+button {
+  font-family: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+address {
+  font-style: normal;
+}
+
+input,
+textarea {
+  cursor: pointer;
+}
 .app {
   margin-top: 50px;
   padding: 16px;
@@ -14,4 +70,3 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-
