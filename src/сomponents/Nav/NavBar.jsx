@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import css from "./NavBar.module.css";
 import useToggle from "../Hooks/useToggle";
 import DropDownMenu from "./DropDownMenu/DropDownMenu";
