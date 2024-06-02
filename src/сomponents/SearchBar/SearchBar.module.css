@@ -1,0 +1,55 @@
+/* Общие стили для формы */
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 320px;
+  margin: 0 auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Для позиционирования кнопки */
+}
+
+/* Стили для текстового поля */
+.searchInput {
+  width: 100%;
+  padding: 10px 40px 10px 10px; /* Добавляем место для кнопки справа */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.searchInput:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Стили для кнопки */
+.searchButton {
+  position: absolute;
+  right: 22px; 
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  height: 36px; 
+}
+
+.searchButton:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.searchButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}

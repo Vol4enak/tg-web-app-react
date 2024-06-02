@@ -8,6 +8,7 @@ body {
   color: var(--tg-theme-text-color);
 }
 .app {
+  margin-top: 50px;
   padding: 16px;
   max-width: 480px;
   margin-left: auto;

@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import { Routes, Route } from "react-router-dom";
 import ProductList from "../ProductList/ProductList";
 import Form from "../Form/Form";
+import SearchBar from "../SearchBar/SearchBar";
 import css from "./App.module.css";
 // import getPopularMovieFromServer from "./api/apiProduct";
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <>
       <Header />
       <div className={css.app}>
+        <SearchBar />
         <Routes>
           <Route index element={<ProductList />} />
           <Route path={"form"} element={<Form />} />
