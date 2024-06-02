@@ -46,12 +46,10 @@
 /* ------------- sliding menu ------------------ */
 .hidden {
   transform: translateX(100%); /* Меню скрыто */
-  display: none;
 }
 
 .visible {
   transform: translateX(0);
-  display: block;
 }
 
 /* ----- animations--------- */
