@@ -59,6 +59,10 @@
   visibility: visible;
 }
 
+.noScroll {
+  overflow: hidden;
+}
+
 .burgerBar.clicked:nth-child(1) {
   transform: rotate(45deg) translate(0.75em, 1.25em);
 }

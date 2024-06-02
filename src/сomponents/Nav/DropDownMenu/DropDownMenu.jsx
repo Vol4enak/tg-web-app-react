@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./DropDownMenu.module.css";
-import useToggle from "../../Hooks/useTelegram";
+import useToggle from "../../Hooks/useToggle";
 export default function DropDownMenu() {
   const [isVisible, setIsVisible] = useToggle(false);
 

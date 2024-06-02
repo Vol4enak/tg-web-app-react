@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import css from "./NavBar.module.css";
-import useToggle from "../Hooks/useTelegram";
+import useToggle from "../Hooks/useToggle";
 import DropDownMenu from "./DropDownMenu/DropDownMenu";
+import useClickOutside from "../Hooks/useClickOutside";
 import { IoMdClose } from "react-icons/io";
 function NavBar() {
   const [isVisible, setIsVisible] = useToggle(false);
+  const navRef = useClickOutside(isVisible, setIsVisible, css.noScroll);
 
   return (
-    <div className={css.navBox}>
+    <div className={css.navBox} ref={navRef}>
       <nav className={css.navBar}>
-        <div className={css.burgerMenu} onClick={setIsVisible}>
+        <div
+          className={css.burgerMenu}
+          onClick={() => setIsVisible(!isVisible)}
+        >
           <div
             className={`${css.burgerBar} ${
               isVisible ? css.clicked : css.unclicked
