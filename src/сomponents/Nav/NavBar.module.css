@@ -50,8 +50,8 @@
   border: none;
 
   margin-top: 20px;
-  margin-left: 15px;
-  
+  margin-left: auto;
+  margin-right: 28px;
 }
 
 .visible {

@@ -13,6 +13,18 @@ function App() {
     tg.ready();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // fetch("https://fakestoreapi.in/api/products?limit=150")
+  //   .then((res) => res.json())
+  //   .then((res) => console.log(res));
+
+  // fetch(" https://api.escuelajs.co/api/v1/products?limit=105")
+  //   .then((res) => res.json())
+  //   .then((res) => console.log(res));
+
+  // fetch(" https://fake-store-api.mock.beeceptor.com/api/products") 9 
+  //   .then((res) => res.json())
+  //   .then((res) => console.log(res));
   return (
     <>
       <Header />

@@ -34,7 +34,7 @@ function NavBar() {
       </nav>
       <div className={`${css.modalMenu} ${isVisible ? css.visible : ""}`}>
         <button onClick={setIsVisible} className={css.closeBtn}>
-          <IoMdClose style={{ width: "25px", height: "25px" }} />
+          <IoMdClose style={{ width: "30px", height: "30px" }} />
         </button>
         <DropDownMenu />
       </div>
