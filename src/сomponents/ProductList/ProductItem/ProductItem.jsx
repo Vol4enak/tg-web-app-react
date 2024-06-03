@@ -29,7 +29,7 @@ const ProductItem = ({
       {/* <div className={css.description}>{product.description}</div> */}
       <p className={css.price}>
         <span>
-          Стоимость: <b>{price}</b>
+          ціна: <b>{price} UAH</b>
         </span>
       </p>
       {/* <Button className={css.add_btn} onClick={onAddHandler}>

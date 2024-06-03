@@ -31,7 +31,9 @@
   border-radius: 4px;
   margin-top: 10px;
 }
-
+.link {
+  width: 100%;
+}
 .menu.visible {
   max-height: 500px; /* Максимальная высота, до которой может расширяться меню */
 }

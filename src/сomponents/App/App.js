@@ -1,12 +1,12 @@
-import { useTelegram } from "../Hooks/useTelegram";
-import { useEffect } from "react";
-import Header from "../Header/Header";
 import { Routes, Route } from "react-router-dom";
-import ProductList from "../ProductList/ProductList";
-import Form from "../Form/Form";
+import { BurgerMenuProvider } from "../СontextAPI/ContextAPI";
+import { useTelegram } from "../../Hooks/useTelegram";
+import { useEffect } from "react";
+import { Home } from "../../pages/Home";
+import { Category } from "../../pages/Category";
+import NavBar from "../Nav/NavBar";
 import SearchBar from "../SearchBar/SearchBar";
 import css from "./App.module.css";
-
 
 function App() {
   const { tg } = useTelegram();
@@ -15,29 +15,21 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // fetch("https://fakestoreapi.in/api/products?limit=150")
-  //   .then((res) => res.json())
-  //   .then((res) => console.log(res));
-
-  // fetch(" https://api.escuelajs.co/api/v1/products?limit=105")
-  //   .then((res) => res.json())
-  //   .then((res) => console.log(res));
-
-  // fetch(" https://fake-store-api.mock.beeceptor.com/api/products") 9
-  //   .then((res) => res.json())
-  //   .then((res) => console.log(res));
   return (
-    <>
-      <Header />
-      <div className={css.app}>
-        <SearchBar />
-
+    <BurgerMenuProvider>
+      <div className={css.container}>
+        <header>
+          <NavBar />
+          <SearchBar />
+        </header>
         <Routes>
-          <Route index element={<ProductList />} />
-          <Route path={"form"} element={<Form />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/category/:categoryName" element={<Category />} />
+          {/* <Route path="products" element={<Products />} />
+          <Route path="products/:id" element={<ProductDetails />} /> */}
         </Routes>
       </div>
-    </>
+    </BurgerMenuProvider>
   );
 }
 

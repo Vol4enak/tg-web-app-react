@@ -1,18 +1,18 @@
 import { useEffect, useRef } from 'react';
 
-const useClickOutside = (isVisible, setIsVisible, cssClass) => {
+const useClickOutside = (isVisible, closeMenu, cssClass) => {
   const ref = useRef(null);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setIsVisible(false);
+        closeMenu();
       }
     };
 
     const handleEscapePress = (event) => {
       if (event.key === 'Escape') {
-        setIsVisible(false);
+        closeMenu();
       }
     };
 
@@ -31,7 +31,7 @@ const useClickOutside = (isVisible, setIsVisible, cssClass) => {
       document.removeEventListener('mousedown', handleOutsideClick);
       document.removeEventListener('keydown', handleEscapePress);
     };
-  }, [isVisible, setIsVisible, cssClass]);
+  }, [isVisible, closeMenu, cssClass]);
 
   return ref;
 };

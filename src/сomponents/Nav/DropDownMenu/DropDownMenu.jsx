@@ -1,8 +1,26 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import css from "./DropDownMenu.module.css";
-import useToggle from "../../Hooks/useToggle";
+import useToggle from "../../../Hooks/useToggle";
+import { useBurgerMenu } from "../../СontextAPI/ContextAPI";
+import useFetchData from "../../../Hooks/useFetchData";
+
 export default function DropDownMenu() {
   const [isVisible, setIsVisible] = useToggle(false);
+  const { closeBurgerMenu } = useBurgerMenu();
+  const {
+    data: fetchData,
+    loading,
+    error,
+  } = useFetchData("http://localhost:8000/api/category");
+
+  if (loading) {
+    return <div>Загрузка...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className={css.dropdownContainer}>
@@ -10,11 +28,17 @@ export default function DropDownMenu() {
         Каталог товаров
       </button>
       <ul className={`${css.menu} ${isVisible ? css.visible : ""}`}>
-        <li className={css.menuItem}>Товар 1</li>
-        <li className={css.menuItem}>Товар 2</li>
-        <li className={css.menuItem}>Товар 3</li>
-        <li className={css.menuItem}>Товар 4</li>
-        <li className={css.menuItem}>Товар 5</li>
+        {fetchData.categories.map((categories) => (
+          <li key={categories} className={css.menuItem}>
+            <Link
+              className={css.link}
+              to={`/category/${categories}`}
+              onClick={closeBurgerMenu}
+            >
+              {categories}
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
