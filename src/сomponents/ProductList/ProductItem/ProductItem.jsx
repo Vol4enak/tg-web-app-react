@@ -2,21 +2,36 @@ import React from "react";
 // import Button from "../../Button/Button";
 import css from "./ProductItem.module.css";
 
-const ProductItem = ({ product, className, onAdd }) => {
+const ProductItem = ({
+  id,
+  category,
+  description,
+  image,
+  price,
+  title,
+  onAdd,
+  className,
+}) => {
   // const onAddHandler = () => {
   //   onAdd(product);
   // };
+  const truncateString = (str, num) => {
+    if (str.length <= num) {
+      return str;
+    }
+    return str.slice(0, num) + "...";
+  };
 
   return (
     <div className={css.product + " " + className}>
-      <div className={css.img} />
-      <div className={css.title}>{product.title}</div>
-      <div className={css.description}>{product.description}</div>
-      <div className={css.price}>
+      <img src={image} alt="" className={css.imgItem}/>
+      <p className={css.title}>{truncateString(title, 25)}</p>
+      {/* <div className={css.description}>{product.description}</div> */}
+      <p className={css.price}>
         <span>
-          Стоимость: <b>{product.price}</b>
+          Стоимость: <b>{price}</b>
         </span>
-      </div>
+      </p>
       {/* <Button className={css.add_btn} onClick={onAddHandler}>
         Добавить в корзину
       </Button> */}

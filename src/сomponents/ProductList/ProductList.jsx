@@ -1,96 +1,96 @@
 import React from "react";
+import axios from "axios";
 import css from "./ProductList.module.css";
-import { useState, useCallback, useEffect } from "react";
-import { useTelegram } from "../Hooks/useTelegram";
-import ProductItem from "./ProductItem/ProductItem";
-const products = [
-  {
-    id: "1",
-    title: "Джинсы",
-    price: 5000,
-    description: "Синего цвета, прямые",
-  },
-  {
-    id: "2",
-    title: "Куртка",
-    price: 12000,
-    description: "Зеленого цвета, теплая",
-  },
-  {
-    id: "3",
-    title: "Джинсы 2",
-    price: 5000,
-    description: "Синего цвета, прямые",
-  },
-  {
-    id: "4",
-    title: "Куртка 8",
-    price: 122,
-    description: "Зеленого цвета, теплая",
-  },
-  {
-    id: "5",
-    title: "Джинсы 3",
-    price: 5000,
-    description: "Синего цвета, прямые",
-  },
-  {
-    id: "6",
-    title: "Куртка 7",
-    price: 600,
-    description: "Зеленого цвета, теплая",
-  },
-  {
-    id: "7",
-    title: "Джинсы 4",
-    price: 5500,
-    description: "Синего цвета, прямые",
-  },
-  {
-    id: "8",
-    title: "Куртка 5",
-    price: 12000,
-    description: "Зеленого цвета, теплая",
-  },
-  {
-    id: "9",
-    title: "Куртка 6",
-    price: 15000,
-    description: "малина цвета, теплая",
-  },
-];
+import { useState, useEffect } from "react";
 
-const getTotalPrice = (items = []) => {
-  return items.reduce((acc, item) => {
-    return (acc += item.price);
-  }, 0);
-};
+import ProductItem from "./ProductItem/ProductItem";
+// const products = [
+//   {
+//     id: "1",
+//     title: "Джинсы",
+//     price: 5000,
+//     description: "Синего цвета, прямые",
+//   },
+//   {
+//     id: "2",
+//     title: "Куртка",
+//     price: 12000,
+//     description: "Зеленого цвета, теплая",
+//   },
+//   {
+//     id: "3",
+//     title: "Джинсы 2",
+//     price: 5000,
+//     description: "Синего цвета, прямые",
+//   },
+//   {
+//     id: "4",
+//     title: "Куртка 8",
+//     price: 122,
+//     description: "Зеленого цвета, теплая",
+//   },
+//   {
+//     id: "5",
+//     title: "Джинсы 3",
+//     price: 5000,
+//     description: "Синего цвета, прямые",
+//   },
+//   {
+//     id: "6",
+//     title: "Куртка 7",
+//     price: 600,
+//     description: "Зеленого цвета, теплая",
+//   },
+//   {
+//     id: "7",
+//     title: "Джинсы 4",
+//     price: 5500,
+//     description: "Синего цвета, прямые",
+//   },
+//   {
+//     id: "8",
+//     title: "Куртка 5",
+//     price: 12000,
+//     description: "Зеленого цвета, теплая",
+//   },
+//   {
+//     id: "9",
+//     title: "Куртка 6",
+//     price: 15000,
+//     description: "малина цвета, теплая",
+//   },
+// ];
+
+// const getTotalPrice = (items = []) => {
+//   return items.reduce((acc, item) => {
+//     return (acc += item.price);
+//   }, 0);
+// };
 
 const ProductList = () => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
   const [addedItems, setAddedItems] = useState([]);
-  const { tg, queryId } = useTelegram();
-
-  const onSendData = useCallback(() => {
-    const data = {
-      products: addedItems,
-      totalPrice: getTotalPrice(addedItems),
-      queryId,
-    };
-    fetch("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/web-data", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-  }, [addedItems, queryId]);
-
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/data");
+        setData(response.data);
+      } catch (error) {
+        setError("Ошибка при получении данных");
+      }
     };
-  }, [onSendData, tg]);
+
+    fetchData();
+  }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!data) {
+    return <div>Загрузка...</div>;
+  }
 
   const onAdd = (product) => {
     const alreadyAdded = addedItems.find((item) => item.id === product.id);
@@ -103,23 +103,19 @@ const ProductList = () => {
     }
 
     setAddedItems(newItems);
-
-    if (newItems.length === 0) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Купить ${getTotalPrice(newItems)}`,
-      });
-    }
   };
 
   return (
     <div className={css.list}>
-      {products.map((item) => (
+      {data.map(({ id, category, description, image, price, title }) => (
         <ProductItem
-          key={item.id}
-          product={item}
+          key={id}
+          id={id}
+          category={category}
+          description={description}
+          price={price}
+          image={image}
+          title={title}
           onAdd={onAdd}
           className={css.item}
         />

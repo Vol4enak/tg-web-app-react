@@ -1,19 +1,37 @@
-// const getPopularMovieFromServer = () => {
-//   return fetch("https://jsonplaceholder.typicode.com/todos").then(
-//     (response) => response.json()
-//   );
-// };
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-// export default getPopularMovieFromServer;
+const DataComponent = () => {
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
 
-// const getPopularMovieFromServer = () => {
-//   return fetch("https://shop-21275.x9.co.ua/api/auth", {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json;charset=utf-8",
-//     },
-//   }).then((response) => response.json());
-// };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/data");
+        setData(response.data);
+      } catch (error) {
+        setError("Ошибка при получении данных");
+      }
+    };
 
-// export default getPopularMovieFromServer;
-// // cw8iYPMFxrxDFWS
+    fetchData();
+  }, []);
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!data) {
+    return <div>Загрузка...</div>;
+  }
+
+  return (
+    <div>
+      <h1>Полученные данные</h1>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  );
+};
+
+export default DataComponent;

@@ -6,7 +6,8 @@ import ProductList from "../ProductList/ProductList";
 import Form from "../Form/Form";
 import SearchBar from "../SearchBar/SearchBar";
 import css from "./App.module.css";
-// import getPopularMovieFromServer from "./api/apiProduct";
+
+
 function App() {
   const { tg } = useTelegram();
   useEffect(() => {
@@ -22,7 +23,7 @@ function App() {
   //   .then((res) => res.json())
   //   .then((res) => console.log(res));
 
-  // fetch(" https://fake-store-api.mock.beeceptor.com/api/products") 9 
+  // fetch(" https://fake-store-api.mock.beeceptor.com/api/products") 9
   //   .then((res) => res.json())
   //   .then((res) => console.log(res));
   return (
@@ -30,6 +31,7 @@ function App() {
       <Header />
       <div className={css.app}>
         <SearchBar />
+
         <Routes>
           <Route index element={<ProductList />} />
           <Route path={"form"} element={<Form />} />

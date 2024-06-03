@@ -6,12 +6,12 @@
 .title {
   color: var(--tg-theme-text-color);
 }
-.img {
-  background: lightgray;
+.imgItem {
+  background: var(--tg-theme-bg-color);
   width: 100%;
-  height: 100px;
+  height: 100%;
+  object-fit: contain;
   margin: 0 auto;
-  border: 1px solid blue;
 }
 .price {
   color: var(--tg-theme-text-color);
