@@ -23,7 +23,7 @@ const ProductItem = ({
   };
 
   return (
-    <div className={css.product + " " + className}>
+    <div className={css.product}>
       <img src={image} alt="" className={css.imgItem}/>
       <p className={css.title}>{truncateString(title, 25)}</p>
       {/* <div className={css.description}>{product.description}</div> */}

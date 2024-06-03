@@ -22,6 +22,7 @@ function App() {
           <NavBar />
           <SearchBar />
         </header>
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<Category />} />

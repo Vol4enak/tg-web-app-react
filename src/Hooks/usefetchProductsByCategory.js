@@ -10,7 +10,7 @@ const useFetchProductsByCategory = (category) => {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/products?category=${category}`
+          `http://localhost:8000/api/productsByCategory?category=${category}`
         );
         setData(response.data);
       } catch (error) {
