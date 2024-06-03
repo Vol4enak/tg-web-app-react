@@ -12,7 +12,7 @@ export default function DropDownMenu() {
     data: fetchData,
     loading,
     error,
-  } = useFetchData("https://adorable-lebkuchen-d0f7d9.netlify.app/api/category");
+  } = useFetchData("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/category");
 
   if (loading) {
     return <div>Загрузка...</div>;

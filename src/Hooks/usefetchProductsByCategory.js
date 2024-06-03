@@ -10,7 +10,7 @@ const useFetchProductsByCategory = (category) => {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.get(
-          `https://adorable-lebkuchen-d0f7d9.netlify.app/api/productsByCategory?category=${category}`
+          `https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/productsByCategory?category=${category}`
         );
         setData(response.data);
       } catch (error) {
