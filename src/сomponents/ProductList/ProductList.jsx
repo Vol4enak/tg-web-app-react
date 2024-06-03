@@ -17,7 +17,7 @@ const ProductList = () => {
     data: fetchData,
     loading,
     error,
-  } = useFetchData("http://localhost:8000/api/data");
+  } = useFetchData("https://adorable-lebkuchen-d0f7d9.netlify.app/api/data");
 
   if (loading) {
     return <div>Загрузка...</div>;

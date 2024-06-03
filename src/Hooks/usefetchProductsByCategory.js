@@ -10,7 +10,7 @@ const useFetchProductsByCategory = (category) => {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/productsByCategory?category=${category}`
+          `https://adorable-lebkuchen-d0f7d9.netlify.app/api/productsByCategory?category=${category}`
         );
         setData(response.data);
       } catch (error) {
