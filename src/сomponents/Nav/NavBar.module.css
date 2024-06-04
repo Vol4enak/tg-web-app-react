@@ -1,6 +1,4 @@
 .navBox {
-  position: fixed;
-  top: 0;
   width: 100%;
   z-index: 100;
   background-color: var(--tg-theme-bg-color);
@@ -12,27 +10,16 @@
   height: 5em;
   background: var(--tg-theme-bg-color);
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
   padding: 1em;
 }
 
 .burgerMenu {
-  margin-left: auto;
-  height: 100%;
-  width: 4em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
   cursor: pointer;
 }
 
 .burgerBar {
-  width: 4em;
-  height: 0.5em;
-  background-color: rgb(0, 183, 255);
-  border-radius: 0.5em;
-  transition: all 0.5s ease;
 }
 
 .modalMenu {
@@ -44,6 +31,7 @@
   right: 0;
   opacity: 0;
   visibility: hidden;
+  z-index: 100;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -52,18 +40,36 @@
   background-color: transparent;
   border: none;
 
-  margin-top: 20px;
+  margin-top: 18px;
   margin-left: auto;
-  margin-right: 28px;
+  margin-right: 15px;
 }
 .logo {
-  position: absolute;
-  width: 75px;
-  height: 75px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   bottom: 1px;
 }
 
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+  gap: 50px;
+}
+.navList_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  outline: 1px solid red;
+  width: 30px;
+  height: 30px;
+}
+.navList_item:first-child{
+  flex-wrap: wrap;
+}
 .visible {
   opacity: 1;
   visibility: visible;
@@ -71,20 +77,4 @@
 
 .noScroll {
   overflow: hidden;
-}
-
-.burgerBar.clicked:nth-child(1) {
-  transform: rotate(45deg) translate(0.75em, 1.25em);
-}
-
-.burgerBar.clicked:nth-child(2) {
-  transform: scale(0.1);
-}
-
-.burgerBar.clicked:nth-child(3) {
-  transform: rotate(135deg) translate(-0.5em, 1em);
-}
-
-.burgerBar.unclicked {
-  transform: rotate(0) translate(0);
 }
