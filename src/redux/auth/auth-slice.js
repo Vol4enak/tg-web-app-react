@@ -1,19 +1,39 @@
 import { createSlice } from "@reduxjs/toolkit";
-import authOperation from "./auth-operation";
 
-const initialState = {
-  user: { name: null, email: null },
-  token: null,
-  isLoggedIn: false,
-};
-const authSlise = createSlice({
-  name: "auth",
-  initialState,
-  extraReducers: {
-    [authOperation.register.fulfilled](state, action){
-
-    }
+export const userSlice = createSlice({
+  name: "user",
+  initialState: {
+    login: "",
+    isLoggedIn: false,
+  },
+  reducers: {
+    logIn(state, action) {
+      state.logIn = action.payload;
+      state.isLoggedIn = true;
+    },
+    logOut(state) {
+      state.logIn = "";
+      state.isLoggedIn = false;
+    },
   },
 });
 
-export default authSlise.reducer;
+export const { logIn, logOut } = userSlice.actions;
+// import authOperation from "./auth-operation";
+
+// const initialState = {
+//   user: { name: null, email: null },
+//   token: null,
+//   isLoggedIn: false,
+// };
+// const authSlise = createSlice({
+//   name: "auth",
+//   initialState,
+//   extraReducers: {
+//     [authOperation.register.fulfilled](state, action){
+
+//     }
+//   },
+// });
+
+// export default authSlise.reducer;

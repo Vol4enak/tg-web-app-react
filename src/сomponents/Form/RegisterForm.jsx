@@ -1,8 +1,11 @@
 import { useState } from "react";
 
-import css from "./formCard.module.css";
+// import css from "./formCard.module.css";
+// import { useDispatch } from "react-redux";
 
-export const FormCard = ({ onSubmit}) => {
+export const RegisterForm = ({ onSubmit }) => {
+  // const dispatch = useDispatch();
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,6 +19,9 @@ export const FormCard = ({ onSubmit}) => {
       case "password":
         setPassword(value);
         break;
+        case "name":
+          setName(value);
+        break;
 
       default:
         return;
@@ -23,13 +29,12 @@ export const FormCard = ({ onSubmit}) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(email, password,);
-  
+    // dispatch(authOperation);
   };
 
   return (
     <>
-      <div className={css.formBox}>
+      <div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -47,7 +52,14 @@ export const FormCard = ({ onSubmit}) => {
             placeholder="password"
             required
           />
-
+          <input
+            type="number"
+            name="name"
+            onChange={handelChange}
+            value={name}
+            placeholder="name"
+            required
+          />
 
           <button type="submit" onSubmit={onSubmit}>
             Add info

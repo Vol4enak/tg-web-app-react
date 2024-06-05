@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import css from "./DropDownMenu.module.css";
 
-import useFetchData from "../../../Hooks/useFetchData";
+import useFetchData from "../../Hooks/useFetchData";
 
 export default function DropDownMenu() {
 

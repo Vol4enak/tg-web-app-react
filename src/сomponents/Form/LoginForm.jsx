@@ -1,11 +1,8 @@
 import { useState } from "react";
-import 
-import css from "./formCard.module.css";
-import { useDispatch } from "react-redux";
 
-export const FormCard = ({ onSubmit }) => {
-  const dispatch = useDispatch();
-  const [name, setName] = useState("");
+// import css from "./formCard.module.css";
+
+export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -26,12 +23,13 @@ export const FormCard = ({ onSubmit }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(authOperation);
+    // onSubmit(email, password,);
+    console.log(email, password);
   };
 
   return (
     <>
-      <div className={css.formBox}>
+      <div>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -50,9 +48,7 @@ export const FormCard = ({ onSubmit }) => {
             required
           />
 
-          <button type="submit" onSubmit={onSubmit}>
-            Add info
-          </button>
+          <button type="submit">Add info</button>
         </form>
       </div>
     </>

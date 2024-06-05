@@ -2,7 +2,7 @@ import React from "react";
 import css from "./ProductList.module.css";
 import { useState } from "react";
 import useFetchData from "../../Hooks/useFetchData";
-import ProductItem from "./ProductItem/ProductItem";
+import ProductItem from "../ProductItem/ProductItem";
 
 // const getTotalPrice = (items = []) => {
 //   return items.reduce((acc, item) => {

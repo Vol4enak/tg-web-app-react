@@ -4,8 +4,9 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import { TbCategory } from "react-icons/tb";
 import { TiThMenu } from "react-icons/ti";
-import DropDownMenu from "./DropDownMenu/DropDownMenu";
-import { IoMdClose } from "react-icons/io";
+import DropDownMenu from "../DropDownMenu/DropDownMenu";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
+
 import useClickOutside from "../../Hooks/useClickOutside";
 import useToggle from "../../Hooks/useToggle";
 import css from "./NavBar.module.css";
@@ -87,22 +88,7 @@ function NavBar() {
         </button>
       </nav>
       {isVisibleMenu && (
-        <div className={css.menu} ref={navRef}>
-          <button
-            onClick={() => {
-              setIsVisibleMenu(false);
-            }}
-            className={css.closeBtn}
-          >
-            <IoMdClose
-              style={{
-                width: "30px",
-                height: "30px",
-                fill: "var(--tg-theme-text-color)",
-              }}
-            />
-          </button>
-        </div>
+        <BurgerMenu navRef={navRef} setIsVisibleMenu={setIsVisibleMenu} />
       )}
     </div>
   );
