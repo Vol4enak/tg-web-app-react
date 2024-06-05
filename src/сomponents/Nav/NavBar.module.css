@@ -15,24 +15,20 @@
   padding: 1em;
 }
 
-.burgerMenu {
+.bthMenu {
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
-.burgerBar {
-}
-
-.modalMenu {
+.menu {
   width: 80%;
   height: 100vh;
   background-color: rgb(154, 181, 240);
   position: absolute;
   top: 0;
   right: 0;
-  opacity: 0;
-  visibility: hidden;
   z-index: 100;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .closeBtn {
@@ -63,16 +59,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  outline: 1px solid red;
   width: 30px;
   height: 30px;
 }
-.navList_item:first-child{
+.navList_item:first-child {
   flex-wrap: wrap;
-}
-.visible {
-  opacity: 1;
-  visibility: visible;
 }
 
 .noScroll {

@@ -4,7 +4,7 @@ import css from "./DropDownMenu.module.css";
 
 import useFetchData from "../../../Hooks/useFetchData";
 
-export default function DropDownMenu({isVisible}) {
+export default function DropDownMenu() {
 
 
   const {
@@ -25,7 +25,7 @@ export default function DropDownMenu({isVisible}) {
 
   return (
     <div className={css.dropdownContainer}>
-      <ul className={`${css.menu} ${isVisible ? css.visible : ""}`}>
+      <ul className={css.menu}>
         {fetchData.categories.map((categories) => (
           <li key={categories} className={css.menuItem}>
             <Link

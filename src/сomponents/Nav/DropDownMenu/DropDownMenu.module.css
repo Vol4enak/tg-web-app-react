@@ -5,36 +5,19 @@
   margin-top: 15px;
 }
 
-/* Кнопка для открытия меню */
-.toggleButton {
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: var(--tg-theme-text-color);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-  transition: background-color 0.3s ease;
-}
 
-/* Стили для выпадающего меню */
 .menu {
   max-height: 0;
-  overflow: hidden;
   transition: max-height 0.5s ease;
   background-color: #f8f8f8;
-
   border-radius: 4px;
   margin-top: 10px;
+  max-height: 500px;
 }
 .link {
   width: 100%;
 }
-.menu.visible {
-  max-height: 500px; /* Максимальная высота, до которой может расширяться меню */
-}
+
 
 .menuItem {
   padding: 10px;

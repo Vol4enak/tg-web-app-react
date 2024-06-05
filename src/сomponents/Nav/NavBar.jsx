@@ -4,25 +4,24 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
 import { TbCategory } from "react-icons/tb";
 import { TiThMenu } from "react-icons/ti";
-
-import { useBurgerMenu } from "../Сontext/Contexts";
 import DropDownMenu from "./DropDownMenu/DropDownMenu";
 import { IoMdClose } from "react-icons/io";
 import useClickOutside from "../../Hooks/useClickOutside";
 import useToggle from "../../Hooks/useToggle";
 import css from "./NavBar.module.css";
 function NavBar() {
-  const { isBurgerMenuOpen, toggleBurgerMenu, closeBurgerMenu } =
-    useBurgerMenu();
-  const [isVisible, setIsVisible] = useToggle(false);
+  const [isVisibleMenu, setIsVisibleMenu] = useToggle(false);
+  const [isVisibleCategory, setIsVisibleCategory] = useToggle(false);
   const navRef = useClickOutside(
-    isBurgerMenuOpen,
-    closeBurgerMenu,
+    isVisibleMenu,
+    () => {
+      setIsVisibleMenu(false);
+    },
     css.noScroll
   );
 
   return (
-    <div className={css.navBox} ref={navRef}>
+    <div className={css.navBox}>
       <nav className={css.navBar}>
         <a href="/" className={css.logo}>
           <img
@@ -32,7 +31,12 @@ function NavBar() {
           />
         </a>
         <ul className={css.navList}>
-          <li className={css.navList_item} onClick={() => setIsVisible(true)}>
+          <li
+            className={css.navList_item}
+            onClick={() => {
+              setIsVisibleCategory(true);
+            }}
+          >
             <TbCategory
               style={{
                 width: "30px",
@@ -41,7 +45,7 @@ function NavBar() {
               }}
             />
             <br />
-            {isVisible ? <DropDownMenu isVisible={isVisible} /> : null}
+            {isVisibleCategory && <DropDownMenu />}
           </li>
           <li className={css.navList_item}>
             <Link to="/favorites">
@@ -66,35 +70,40 @@ function NavBar() {
             </Link>
           </li>
         </ul>
-        <div className={css.burgerMenu} onClick={toggleBurgerMenu}>
-          <div
-            className={`${css.burgerBar} ${
-              isBurgerMenuOpen ? css.clicked : css.unclicked
-            }`}
-          >
-            <TiThMenu
-              style={{
-                width: "40px",
-                height: "40px",
-                fill: "var(--tg-theme-text-color)",
-              }}
-            />
-          </div>
-        </div>
-      </nav>
-      <div
-        className={`${css.modalMenu} ${isBurgerMenuOpen ? css.visible : ""}`}
-      >
-        <button onClick={closeBurgerMenu} className={css.closeBtn}>
-          <IoMdClose
+
+        <button
+          className={css.bthMenu}
+          onClick={() => {
+            setIsVisibleMenu(true);
+          }}
+        >
+          <TiThMenu
             style={{
-              width: "30px",
-              height: "30px",
+              width: "40px",
+              height: "40px",
               fill: "var(--tg-theme-text-color)",
             }}
           />
         </button>
-      </div>
+      </nav>
+      {isVisibleMenu && (
+        <div className={css.menu} ref={navRef}>
+          <button
+            onClick={() => {
+              setIsVisibleMenu(false);
+            }}
+            className={css.closeBtn}
+          >
+            <IoMdClose
+              style={{
+                width: "30px",
+                height: "30px",
+                fill: "var(--tg-theme-text-color)",
+              }}
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -17,7 +17,9 @@ const ProductList = () => {
     data: fetchData,
     loading,
     error,
-  } = useFetchData("https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/data");
+  } = useFetchData(
+    "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/data"
+  );
 
   if (loading) {
     return <div>Загрузка...</div>;
@@ -27,6 +29,7 @@ const ProductList = () => {
     return <div>{error}</div>;
   }
   const onAdd = (product) => {
+    console.log(product);
     const alreadyAdded = addedItems.find((item) => item.id === product.id);
     let newItems = [];
 
@@ -40,7 +43,7 @@ const ProductList = () => {
   };
 
   return (
-    <div className={css.list}>
+    <ul className={css.list}>
       {fetchData.products.map(
         ({ id, category, description, image, price, title }) => (
           <ProductItem
@@ -56,7 +59,7 @@ const ProductList = () => {
           />
         )
       )}
-    </div>
+    </ul>
   );
 };
 

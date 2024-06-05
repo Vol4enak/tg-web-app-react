@@ -28,6 +28,9 @@ function App() {
         <Route path="/category/:categoryName" element={<Category />} />
         <Route path="/Favorites" element={<Favorites />} />
         <Route path="/basket" element={<Basket />} />
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
+        <Route path="/" element={}></Route>
       </Routes>
     </div>
   );
