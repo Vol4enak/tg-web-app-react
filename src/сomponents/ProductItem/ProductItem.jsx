@@ -2,6 +2,7 @@ import React from "react";
 // import Button from "../../Button/Button";
 import css from "./ProductItem.module.css";
 import { GoHeartFill } from "react-icons/go";
+import { HiShoppingCart } from "react-icons/hi";
 const ProductItem = ({
   id,
   category,
@@ -13,7 +14,7 @@ const ProductItem = ({
   className,
 }) => {
   const onAddHandler = () => {
-    onAdd({id, category, description, image, price, title});
+    onAdd({ id, category, description, image, price, title });
   };
   const truncateString = (str, num) => {
     if (str.length <= num) {
@@ -26,6 +27,15 @@ const ProductItem = ({
     <li className={css.productItem}>
       <button className={css.svgLike} onClick={onAddHandler}>
         <GoHeartFill
+          style={{
+            width: "15px",
+            height: "15px",
+            fill: "grey",
+          }}
+        />
+      </button>
+      <button className={css.svgBuy} onClick={onAddHandler}>
+        <HiShoppingCart
           style={{
             width: "15px",
             height: "15px",

@@ -1,6 +1,6 @@
 import React from "react";
 import { RegisterForm } from "../сomponents/Form/RegisterForm";
-const RegisterPage = () => {
+export const RegisterPage = () => {
   return (
     <div>
       <RegisterForm />
@@ -8,4 +8,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+

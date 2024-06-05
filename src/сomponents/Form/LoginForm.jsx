@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 // import css from "./formCard.module.css";
 import { logIn } from "../../redux/auth/auth-slice";
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handelChange = (e) => {
     const { name, value } = e.currentTarget;
 
@@ -24,9 +26,13 @@ export const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // onSubmit(email, password,);
-    console.log(email, password);
     dispatch(logIn(email, password));
-    e.currentTarget.reset();
+    reset();
+    navigate("/", { replace: true });
+  };
+  const reset = () => {
+    setEmail("");
+    setPassword("");
   };
 
   return (

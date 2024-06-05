@@ -1,14 +1,16 @@
 import { Routes, Route } from "react-router-dom";
 import { useTelegram } from "../Hooks/useTelegram";
 import { useEffect } from "react";
-import { Home } from "../pages/Home";
-import CategoryPage from "../pages/Category";
-import { Favorites } from "../pages/Favorites";
-import { Basket } from "../pages/Basket";
+import {
+  Home,
+  Basket,
+  CategoryPage,
+  Favorites,
+  LoginPage,
+  RegisterPage,
+} from "../pages";
 import NavBar from "../сomponents/Nav/NavBar";
 import css from "./App.module.css";
-import  LoginPage  from "../pages/LoginPage";
-import  RegisterPage  from "../pages/RegisterPage";
 
 function App() {
   const { tg } = useTelegram();
