@@ -1,6 +1,7 @@
 import React from "react";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
+
 import css from "./BurgerMenu.module.css";
 const BurgerMenu = ({ navRef, setIsVisibleMenu }) => {
   return (
@@ -20,12 +21,16 @@ const BurgerMenu = ({ navRef, setIsVisibleMenu }) => {
         />
       </button>
 
-      <ul>
-        <li onClick={() => setIsVisibleMenu(false)}>
-          <Link to="/login">login</Link>
+      <ul className={css.burgtrList}>
+        <li onClick={() => setIsVisibleMenu(false)} className={css.burgtrItem}>
+          <Link to="/login" className={css.burgtrItemLink}>
+            login
+          </Link>
         </li>
-        <li onClick={() => setIsVisibleMenu(false)}>
-          <Link to="register">register</Link>
+        <li onClick={() => setIsVisibleMenu(false)} className={css.burgtrItem}>
+          <Link to="register" className={css.burgtrItemLink}>
+            register
+          </Link>
         </li>
       </ul>
     </div>
