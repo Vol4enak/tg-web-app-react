@@ -12,7 +12,7 @@ export default function DropDownMenu() {
     loading,
     error,
   } = useFetchData(
-    "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/category"
+    "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/data/category"
   );
 
   if (loading) {
