@@ -1,10 +1,10 @@
 import { useState } from "react";
-
+import authOperation from "../../redux/auth/auth-operation";
 // import css from "./formCard.module.css";
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const RegisterForm = ({ onSubmit }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,8 +19,8 @@ export const RegisterForm = ({ onSubmit }) => {
       case "password":
         setPassword(value);
         break;
-        case "name":
-          setName(value);
+      case "name":
+        setName(value);
         break;
 
       default:
@@ -29,7 +29,10 @@ export const RegisterForm = ({ onSubmit }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(authOperation);
+    dispatch(authOperation.register({ name, email, password }));
+    setEmail("");
+    setPassword("");
+    setName("");
   };
 
   return (

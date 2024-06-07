@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logOut } from "../../redux/auth/auth-slice";
+// import { logOut } from "../../redux/auth/auth-slice";
 const UserMenu = () => {
   const login = useSelector((state) => state.user.login);
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const UserMenu = () => {
       <button
       type="button"
         onClick={() => {
-          dispatch(logOut());
+          // dispatch(logOut());
         }}
       >
         Log out
