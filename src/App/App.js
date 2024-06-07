@@ -3,9 +3,9 @@ import { useTelegram } from "../Hooks/useTelegram";
 import { useEffect } from "react";
 import {
   Home,
-  Basket,
+  BasketPage,
   CategoryPage,
-  Favorites,
+  FavoritesPage,
   LoginPage,
   RegisterPage,
 } from "../pages";
@@ -27,8 +27,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/category/:categoryName" element={<CategoryPage />} />
-        <Route path="/Favorites" element={<Favorites />} />
-        <Route path="/basket" element={<Basket />} />
+        <Route path="/Favorites" element={<FavoritesPage />} />
+        <Route path="/basket" element={<BasketPage />} />
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
       </Routes>

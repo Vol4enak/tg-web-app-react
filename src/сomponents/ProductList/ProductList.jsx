@@ -45,7 +45,18 @@ const ProductList = () => {
   return (
     <ul className={css.list}>
       {fetchData.products.map(
-        ({ id, category, description, image, price, title }) => (
+        ({
+          id,
+          title,
+          image,
+          price,
+          description,
+          brand,
+          model,
+          color,
+          category,
+          discount,
+        }) => (
           <ProductItem
             key={id}
             id={id}
@@ -54,6 +65,10 @@ const ProductList = () => {
             price={price}
             image={image}
             title={title}
+            brand={brand}
+            model={model}
+            color={color}
+            discount={discount}
             onAdd={onAdd}
             className={css.item}
           />

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import authOperation from "../../redux/auth/auth-operation";
+import { authOperations } from "../../redux/auth";
 // import css from "./formCard.module.css";
 import { useDispatch } from "react-redux";
 
@@ -29,7 +29,7 @@ export const RegisterForm = ({ onSubmit }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(authOperation.register({ name, email, password }));
+    dispatch(authOperations.register({ name, email, password }));
     setEmail("");
     setPassword("");
     setName("");
@@ -40,7 +40,7 @@ export const RegisterForm = ({ onSubmit }) => {
       <div>
         <form onSubmit={handleSubmit}>
           <input
-            type="text"
+            type="email"
             name="email"
             onChange={handelChange}
             value={email}
@@ -48,7 +48,7 @@ export const RegisterForm = ({ onSubmit }) => {
             required
           />
           <input
-            type="number"
+            type="password"
             name="password"
             onChange={handelChange}
             value={password}
@@ -56,7 +56,7 @@ export const RegisterForm = ({ onSubmit }) => {
             required
           />
           <input
-            type="number"
+            type="name"
             name="name"
             onChange={handelChange}
             value={name}

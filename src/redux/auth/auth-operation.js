@@ -2,28 +2,37 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL =
-  "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/";
+  "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api";
 
- const register = createAsyncThunk(
-  "auth/register",
-  async (credentials) => {
-    try {
-      const { data } = await axios.post("./api/auth/register", credentials);
-      return data;
-    } catch (error) {}
-  }
-);
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = "";
+  },
+};
 
- const logIn = createAsyncThunk("auth/login", async (credentials) => {
+const register = createAsyncThunk("auth/register", async (credentials) => {
   try {
-    const { data } = await axios.post("./api/auth/login", credentials);
+    const { data } = await axios.post("/auth/register", credentials);
+    token.set(data.token);
+    return data;
+  } catch (error) {}
+});
+
+const logIn = createAsyncThunk("auth/login", async (credentials) => {
+  try {
+    const { data } = await axios.post("/auth/login", credentials);
+    token.set(data.token);
     return data;
   } catch (error) {}
 });
 
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
-    await axios.post("/users/logout");
+    await axios.post("/auth/logout");
+    token.unset();
   } catch (error) {
     // TODO: Добавить обработку ошибки error.message
   }
@@ -48,10 +57,10 @@ const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
-const operations = {
+const authOperations = {
   register,
   logOut,
   logIn,
   fetchCurrentUser,
 };
-export default operations;
+export default authOperations;

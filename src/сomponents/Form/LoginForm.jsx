@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authOperations } from "../../redux/auth";
 // import css from "./formCard.module.css";
 // import { logIn } from "../../redux/auth/auth-slice";
 export const LoginForm = () => {
@@ -26,7 +27,7 @@ export const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // onSubmit(email, password,);
-   
+    dispatch(authOperations.logIn({email, password}))
     reset();
     navigate("/", { replace: true });
   };

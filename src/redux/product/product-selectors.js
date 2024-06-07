@@ -1,35 +1,40 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { createSelector } from "@reduxjs/toolkit";
 
-const getLoading = state => state.todos.loading;
+const getLoading = (state) => state.products.loading;
+const getFilter = (state) => state.products.filter;
+const getAllProducts = (state) => state.products.items;
 
-const getFilter = state => state.todos.filter;
-
-const getAllTodos = state => state.todos.items;
-
-const getTotalTodoCount = state => {
-  const todos = getAllTodos(state);
-  return todos.length;
+const getTotalProductCount = (state) => {
+  const products = getAllProducts(state);
+  return products.length;
 };
 
-const getCompletedTodoCount = createSelector([getAllTodos], todos => {
-  return todos.reduce((total, todo) => (todo.completed ? total + 1 : total), 0);
-});
-
-const getVisibleTodos = createSelector(
-  [getAllTodos, getFilter],
-  (todos, filter) => {
-    const normalizedFilter = filter.toLowerCase();
-    return todos.filter(({ description }) =>
-      description.toLowerCase().includes(normalizedFilter),
+const getCompletedProductCount = createSelector(
+  [getAllProducts],
+  (products) => {
+    return products.reduce(
+      (total, product) => (product.completed ? total + 1 : total),
+      0
     );
-  },
+  }
 );
 
-const todosSelectors = {
+const getVisibleProducts = createSelector(
+  [getAllProducts, getFilter],
+  (products, filter) => {
+    const normalizedFilter = filter.toLowerCase();
+    return products.filter(({ description }) =>
+      description.toLowerCase().includes(normalizedFilter)
+    );
+  }
+);
+
+const productsSelectors = {
   getLoading,
   getFilter,
-  getVisibleTodos,
-  getTotalTodoCount,
-  getCompletedTodoCount,
+  getVisibleProducts,
+  getTotalProductCount,
+  getCompletedProductCount,
 };
-export default todosSelectors;
+
+export default productsSelectors;

@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { authSelectors } from "../../redux/auth";
 import { IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import UserMenu from "../UserMenu/UserMenu";
 import css from "./BurgerMenu.module.css";
 const BurgerMenu = ({ navRef, setIsVisibleMenu }) => {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <div className={css.menu} ref={navRef}>
@@ -23,19 +24,28 @@ const BurgerMenu = ({ navRef, setIsVisibleMenu }) => {
           }}
         />
       </button>
-      {isLoggedIn && <UserMenu />}
-      <ul className={css.burgtrList}>
-        <li onClick={() => setIsVisibleMenu(false)} className={css.burgtrItem}>
-          <Link to="/login" className={css.burgtrItemLink}>
-            login
-          </Link>
-        </li>
-        <li onClick={() => setIsVisibleMenu(false)} className={css.burgtrItem}>
-          <Link to="register" className={css.burgtrItemLink}>
-            register
-          </Link>
-        </li>
-      </ul>
+      {isLoggedIn ? (
+        <UserMenu />
+      ) : (
+        <ul className={css.burgtrList}>
+          <li
+            onClick={() => setIsVisibleMenu(false)}
+            className={css.burgtrItem}
+          >
+            <Link to="/login" className={css.burgtrItemLink}>
+              login
+            </Link>
+          </li>
+          <li
+            onClick={() => setIsVisibleMenu(false)}
+            className={css.burgtrItem}
+          >
+            <Link to="register" className={css.burgtrItemLink}>
+              register
+            </Link>
+          </li>
+        </ul>
+      )}
     </div>
   );
 };

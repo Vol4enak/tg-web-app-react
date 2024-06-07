@@ -5,16 +5,31 @@ import { GoHeartFill } from "react-icons/go";
 import { HiShoppingCart } from "react-icons/hi";
 const ProductItem = ({
   id,
-  category,
-  description,
+  title,
   image,
   price,
-  title,
+  description,
+  brand,
+  model,
+  color,
+  category,
+  discount,
   onAdd,
   className,
 }) => {
   const onAddHandler = () => {
-    onAdd({ id, category, description, image, price, title });
+    onAdd({
+      id,
+      title,
+      image,
+      price,
+      description,
+      brand,
+      model,
+      color,
+      category,
+      discount,
+    });
   };
   const truncateString = (str, num) => {
     if (str.length <= num) {
