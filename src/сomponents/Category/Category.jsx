@@ -6,34 +6,36 @@ import { useParams } from "react-router-dom";
 export const Category = () => {
   const { categoryName } = useParams();
   const {
-    data: item,
+    data: productsData,
     loading,
     error,
   } = useFetchProductsByCategory(categoryName);
+
   if (loading) {
     return <div>Загрузка...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
+  if (error || !productsData || !productsData.products) {
+    return <div>Произошла ошибка при загрузке данных</div>;
   }
+
+  const { products } = productsData;
+
   return (
     <main>
       <div className={css.list}>
-        {item.products.map(
-          ({ id, category, description, image, price, title }) => (
-            <ProductItem
-              key={id}
-              id={id}
-              category={category}
-              description={description}
-              price={price}
-              image={image}
-              title={title}
-              className={css.item}
-            />
-          )
-        )}
+        {products.map(({ id, category, description, image, price, title }) => (
+          <ProductItem
+            key={id}
+            id={id}
+            category={category}
+            description={description}
+            price={price}
+            image={image}
+            title={title}
+            className={css.item}
+          />
+        ))}
       </div>
     </main>
   );

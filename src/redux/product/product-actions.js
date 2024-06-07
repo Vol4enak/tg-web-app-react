@@ -1,27 +1,23 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const fetchProductRequest = createAction('products/fetchProductRequest');
-export const fetchProductSuccess = createAction('products/fetchProductsSuccess');
-export const fetchProductError   = createAction('products/fetchProductsError');
+export const fetchTodosRequest = createAction('todos/fetchTodosRequest');
+export const fetchTodosSuccess = createAction('todos/fetchTodosSuccess');
+export const fetchTodosError = createAction('todos/fetchTodosError');
 
-export const addProductRequest    = createAction('products/addProductsRequest');
-export const addProductSuccess   = createAction('products/addProductssuccess');
-export const addProductError      = createAction('products/addProductsError');
+export const addTodoRequest = createAction('todos/addTodoRequest');
+export const addTodoSuccess = createAction('todos/addTodoSuccess');
+export const addTodoError = createAction('todos/addTodoError');
 
-export const deleteProductRequest = createAction('products/deleteProductsRequest');
-export const deleteProductSuccess = createAction('products/deleteProductsuccess');
-export const deleteProductError    = createAction('products/deleteProductsError');
+export const deleteTodoRequest = createAction('todos/deleteTodoRequest');
+export const deleteTodoSuccess = createAction('todos/deleteTodoSuccess');
+export const deleteTodoError = createAction('todos/deleteTodoError');
 
 export const toggleCompletedRequest = createAction(
-  'products/toggleCompletedRequest',
+  'todos/toggleCompletedRequest',
 );
 export const toggleCompletedSuccess = createAction(
-  'products/toggleCompletedSuccess',
+  'todos/toggleCompletedSuccess',
 );
-export const toggleCompletedError = createAction('products/toggleCompletedError');
+export const toggleCompletedError = createAction('todos/toggleCompletedError');
 
-
-// const dispatch = useDispatch();
-//   useEffect(() => {
-//     console.log(dispatch(productsOperations.fetchProducts()));
-//   }, [dispatch]);
+export const changeFilter = createAction('todos/changeFilter');

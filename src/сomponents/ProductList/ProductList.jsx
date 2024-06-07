@@ -3,7 +3,8 @@ import css from "./ProductList.module.css";
 import { useState } from "react";
 import useFetchData from "../../Hooks/useFetchData";
 import ProductItem from "../ProductItem/ProductItem";
-
+import { productsSelectors } from "../../redux/product";
+import { useSelector } from "react-redux";
 // const getTotalPrice = (items = []) => {
 //   return items.reduce((acc, item) => {
 //     return (acc += item.price);
@@ -12,7 +13,8 @@ import ProductItem from "../ProductItem/ProductItem";
 
 const ProductList = () => {
   const [addedItems, setAddedItems] = useState([]);
-
+  const products = useSelector(productsSelectors.getLoading());
+  console.log(products);
   const {
     data: fetchData,
     loading,

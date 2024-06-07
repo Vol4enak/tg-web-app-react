@@ -1,75 +1,73 @@
-import axios from "axios";
+import axios from 'axios';
 import {
-  addProductRequest,
-  addProductSuccess,
-  addProductError,
-  deleteProductRequest,
-  deleteProductSuccess,
-  deleteProductError,
+  addTodoRequest,
+  addTodoSuccess,
+  addTodoError,
+  deleteTodoRequest,
+  deleteTodoSuccess,
+  deleteTodoError,
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
-  fetchProductRequest,
-  fetchProductSuccess,
-  fetchProductError,
-} from "./product-actions";
+  fetchTodosRequest,
+  fetchTodosSuccess,
+  fetchTodosError,
+} from './product-actions';
 
-// GET @ /products
-const fetchProducts = () => async (dispatch) => {
-  dispatch(fetchProductRequest());
+// GET @ /tasks
+const fetchTodos = () => async dispatch => {
+  dispatch(fetchTodosRequest());
 
   try {
-    const { data } = await axios.get("/products");
+    const { data } = await axios.get('/tasks');
 
-    dispatch(fetchProductSuccess(data));
+    dispatch(fetchTodosSuccess(data));
   } catch (error) {
-    dispatch(fetchProductError(error.message));
+    dispatch(fetchTodosError(error.message));
   }
 };
 
-// POST @ /products
-const addProduct = (description) => (dispatch) => {
-  const product = {
+// POST @ /tasks
+const addTodo = description => dispatch => {
+  const todo = {
     description,
     completed: false,
   };
 
-  dispatch(addProductRequest());
+  dispatch(addTodoRequest());
 
   axios
-    .post("/products", product)
-    .then(({ data }) => dispatch(addProductSuccess(data)))
-    .catch((error) => dispatch(addProductError(error.message)));
+    .post('/tasks', todo)
+    .then(({ data }) => dispatch(addTodoSuccess(data)))
+    .catch(error => dispatch(addTodoError(error.message)));
 };
 
-// DELETE @ /products/:id
-const deleteProduct = (productId) => (dispatch) => {
-  dispatch(deleteProductRequest());
+// DELETE @ /tasks/:id
+const deleteTodo = todoId => dispatch => {
+  dispatch(deleteTodoRequest());
 
   axios
-    .delete(`/products/${productId}`)
-    .then(() => dispatch(deleteProductSuccess(productId)))
-    .catch((error) => dispatch(deleteProductError(error.message)));
+    .delete(`/tasks/${todoId}`)
+    .then(() => dispatch(deleteTodoSuccess(todoId)))
+    .catch(error => dispatch(deleteTodoError(error.message)));
 };
 
-// PATCH @ /products/:id
-const toggleProductCompleted =
-  ({ id, completed }) =>
-  (dispatch) => {
-    const update = { completed };
+// PATCH @ /tasks/:id
+const toggleCompleted = ({ id, completed }) => dispatch => {
+  const update = { completed };
 
-    dispatch(toggleCompletedRequest());
+  dispatch(toggleCompletedRequest());
 
-    axios
-      .patch(`/products/${id}`, update)
-      .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
-      .catch((error) => dispatch(toggleCompletedError(error.message)));
-  };
-
-const productsOperations = {
-  fetchProducts,
-  addProduct,
-  deleteProduct,
-  toggleProductCompleted,
+  axios
+    .patch(`/tasks/${id}`, update)
+    .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
+    .catch(error => dispatch(toggleCompletedError(error.message)));
 };
-export default productsOperations;
+
+const todosOperations = {
+  fetchTodos,
+  addTodo,
+  deleteTodo,
+  toggleCompleted,
+};
+export default todosOperations;

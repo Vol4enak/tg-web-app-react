@@ -1,44 +1,47 @@
-import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import {
-  fetchProductRequest,
-  fetchProductSuccess,
-  fetchProductError,
-  addProductRequest,
-  addProductSuccess,
-  addProductError,
-  deleteProductRequest,
-  deleteProductSuccess,
-  deleteProductError,
+  addTodoRequest,
+  addTodoSuccess,
+  addTodoError,
+  fetchTodosRequest,
+  fetchTodosSuccess,
+  fetchTodosError,
 } from "./product-actions";
 
-const items = createReducer([], {
-  [fetchProductSuccess]: (_, { payload }) => payload,
-  [addProductSuccess]: (state, { payload }) => [...state, payload],
-  [deleteProductSuccess]: (state, { payload }) =>
-    state.filter(({ id }) => id !== payload),
+const initialState = {
+  items: [],
+  loading: false,
+  error: null,
+};
+
+const productReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase(fetchTodosRequest, (state) => {
+      state.loading = true;
+    })
+    .addCase(fetchTodosSuccess, (state, action) => {
+      state.loading = false;
+      state.items = action.payload;
+    })
+    .addCase(fetchTodosError, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    .addCase(addTodoRequest, (state) => {
+      state.loading = true;
+    })
+    .addCase(addTodoSuccess, (state, action) => {
+      state.loading = false;
+      state.items.push(action.payload);
+    })
+    .addCase(addTodoError, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    // Add other action cases here
+    .addDefaultCase((state) => {
+      // Handle default case if needed
+    });
 });
 
-const loading = createReducer(false, {
-  [fetchProductRequest]: () => true,
-  [fetchProductSuccess]: () => false,
-  [fetchProductError]: () => false,
-  [addProductRequest]: () => true,
-  [addProductSuccess]: () => false,
-  [addProductError]: () => false,
-  [deleteProductRequest]: () => true,
-  [deleteProductSuccess]: () => false,
-  [deleteProductError]: () => false,
-});
-
-const error = createReducer(null, {
-  [fetchProductError]: (_, { payload }) => payload,
-  [addProductError]: (_, { payload }) => payload,
-  [deleteProductError]: (_, { payload }) => payload,
-});
-
-export default combineReducers({
-  items,
-  loading,
-  error,
-});
+export default productReducer;
