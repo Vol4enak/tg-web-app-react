@@ -8,9 +8,9 @@ import {
   deleteProductSuccess,
   deleteProductError,
   changeFilter,
-  toggleProductCompletedRequest,
-  toggleProductCompletedSuccess,
-  toggleProductCompletedError,
+  toggleCompletedRequest,
+  toggleCompletedSuccess,
+  toggleCompletedError,
   fetchProductsRequest,
   fetchProductsSuccess,
   fetchProductsError,
@@ -23,7 +23,7 @@ const items = createReducer([], (builder) => {
     .addCase(deleteProductSuccess, (state, { payload }) =>
       state.filter(({ id }) => id !== payload)
     )
-    .addCase(toggleProductCompletedSuccess, (state, { payload }) =>
+    .addCase(toggleCompletedSuccess, (state, { payload }) =>
       state.map((product) => (product.id === payload.id ? payload : product))
     );
 });
@@ -31,7 +31,7 @@ const items = createReducer([], (builder) => {
 const loading = createReducer(false, (builder) => {
   builder
     .addCase(fetchProductsRequest, () => true)
-    .addCase(fetchProductsSuccess, () => false)
+    .addCase(fetchProductsSuccess, () => true)
     .addCase(fetchProductsError, () => false)
     .addCase(addProductRequest, () => true)
     .addCase(addProductSuccess, () => false)
@@ -39,9 +39,9 @@ const loading = createReducer(false, (builder) => {
     .addCase(deleteProductRequest, () => true)
     .addCase(deleteProductSuccess, () => false)
     .addCase(deleteProductError, () => false)
-    .addCase(toggleProductCompletedRequest, () => true)
-    .addCase(toggleProductCompletedSuccess, () => false)
-    .addCase(toggleProductCompletedError, () => false);
+    .addCase(toggleCompletedRequest, () => true)
+    .addCase(toggleCompletedSuccess, () => false)
+    .addCase(toggleCompletedError, () => false);
 });
 
 const filter = createReducer("", (builder) => {

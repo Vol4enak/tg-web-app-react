@@ -20,13 +20,13 @@ export const deleteProductSuccess = createAction(
 );
 export const deleteProductError = createAction("products/deleteProductError");
 
-export const toggleProductCompletedRequest = createAction(
+export const toggleCompletedRequest = createAction(
   "products/toggleProductCompletedRequest"
 );
-export const toggleProductCompletedSuccess = createAction(
+export const toggleCompletedSuccess = createAction(
   "products/toggleProductCompletedSuccess"
 );
-export const toggleProductCompletedError = createAction(
+export const toggleCompletedError = createAction(
   "products/toggleProductCompletedError"
 );
 
