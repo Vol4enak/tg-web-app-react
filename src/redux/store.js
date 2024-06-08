@@ -11,7 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import productReducer from "./product/product-reducer";
+import productReduser from "./product/product-reduser";
 import { authReducer } from "./auth";
 
 const authPersistConfig = {
@@ -22,7 +22,7 @@ const authPersistConfig = {
 
 const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
-  products: productReducer,
+  product: productReduser,
 });
 
 const store = configureStore({

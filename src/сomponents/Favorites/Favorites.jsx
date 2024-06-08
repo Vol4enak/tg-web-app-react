@@ -1,19 +1,8 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { productsOperations, productsSelectors } from "../../redux/product";
+import React from "react";
+
 
 const Favorites = () => {
-  const dispatch = useDispatch();
- 
-  const loading = useSelector(productsSelectors.getLoading);
 
-  useEffect(() => {
-    dispatch(productsOperations.fetchProducts());
-  }, [dispatch]);
-
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <ul>
