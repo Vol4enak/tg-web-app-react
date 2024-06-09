@@ -1,7 +1,7 @@
 // import { createSelector } from "@reduxjs/toolkit";
 
 const getLoading = (state) => state.products.loading;
-
+const getError = (state) => state.products.error;
 const getFilter = (state) => state.products.filter;
 
 const getAllProducts = (state) => state.products.items;
@@ -35,6 +35,7 @@ const productsSelectors = {
   getLoading,
   getFilter,
   getAllProducts,
+  getError
   //   getVisibleProducts,
   //   getTotalProductCount,
   //   getCompletedProductCount,

@@ -1,49 +1,74 @@
 import React, { useEffect } from "react";
 import css from "./ProductList.module.css";
 // import { useState } from "react";
-import { useDispatch } from "react-redux";
-// import useFetchData from "../../Hooks/useFetchData";
+import { useDispatch, useSelector } from "react-redux";
+
+import Notiflix from "notiflix";
 import ProductItem from "../ProductItem/ProductItem";
-import { productsOperations } from "../../redux/Product";
+import { productsOperations, productsSelectors } from "../../redux/Product";
 
 const ProductList = () => {
-  // const [addedItems, setAddedItems] = useState([]);
   const dispatch = useDispatch();
-  useEffect(() => dispatch(productsOperations.fetchProducts())[dispatch]);
+  const products = useSelector(productsSelectors.getAllProducts);
+  const isLoading = useSelector(productsSelectors.getLoading);
+  useEffect(() => {
+    dispatch(productsOperations.fetchProducts());
+  }, [dispatch]);
 
+  if (!products) {
+    console.log(products);
+    return <div>Загрузка...</div>;
+  }
+  const notisCircl = () => {
+    if (isLoading) {
+      Notiflix.Loading.standard("Loading...");
+    } else {
+      Notiflix.Loading.remove();
+    }
+  };
+  notisCircl();
   return (
     <ul className={css.list}>
-      <ProductItem />
+      {products.map(
+        ({
+          _id,
+          id,
+          title,
+          image,
+          price,
+          description,
+          brand,
+          model,
+          color,
+          category,
+          popular,
+          onSale,
+          discount,
+          favorite,
+          basket,
+        }) => (
+          <ProductItem
+            key={id}
+            _id={_id}
+            id={id}
+            title={title}
+            image={image}
+            price={price}
+            description={description}
+            brand={brand}
+            model={model}
+            color={color}
+            category={category}
+            onSale={onSale}
+            popular={popular}
+            discount={discount}
+            favorite={favorite}
+            basket={basket}
+          />
+        )
+      )}
     </ul>
   );
 };
 
 export default ProductList;
-// const {
-//   data: fetchData,
-//   loading,
-//   error,
-// } = useFetchData(
-//   "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/data"
-// );
-
-// if (loading) {
-//   return <div>Загрузка...</div>;
-// }
-
-// if (error) {
-//   return <div>{error}</div>;
-// }
-// const onAdd = (product) => {
-//   console.log(product);
-//   const alreadyAdded = addedItems.find((item) => item.id === product.id);
-//   let newItems = [];
-
-//   if (alreadyAdded) {
-//     newItems = addedItems.filter((item) => item.id !== product.id);
-//   } else {
-//     newItems = [...addedItems, product];
-//   }
-//   // dispatch(productsOperations.toggleCompleted(product.id, newItems));
-//   setAddedItems(newItems);
-// };

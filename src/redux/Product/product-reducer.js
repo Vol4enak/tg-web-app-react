@@ -31,7 +31,7 @@ const items = createReducer([], (builder) => {
 const loading = createReducer(false, (builder) => {
   builder
     .addCase(fetchProductsRequest, () => true)
-    .addCase(fetchProductsSuccess, () => true)
+    .addCase(fetchProductsSuccess, () => false)
     .addCase(fetchProductsError, () => false)
     .addCase(addProductRequest, () => true)
     .addCase(addProductSuccess, () => false)
@@ -48,7 +48,13 @@ const filter = createReducer("", (builder) => {
   builder.addCase(changeFilter, (_, { payload }) => payload);
 });
 
-const error = createReducer(null, (builder) => {});
+const error = createReducer(null, (builder) => {
+  builder
+    .addCase(fetchProductsError, (_, { payload }) => payload)
+    .addCase(addProductError, (_, { payload }) => payload)
+    .addCase(deleteProductError, (_, { payload }) => payload)
+    .addCase(toggleCompletedError, (_, { payload }) => payload);
+});
 
 export default combineReducers({
   items,

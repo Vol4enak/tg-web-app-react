@@ -20,6 +20,17 @@ const fetchProducts = () => async (dispatch) => {
 
   try {
     const { data } = await axios.get("/products/data");
+    console.log(data);
+    dispatch(fetchProductsSuccess(data));
+  } catch (error) {
+    dispatch(fetchProductsError(error.message));
+  }
+};
+const fetchUserProducts = () => async (dispatch) => {
+  dispatch(fetchProductsRequest());
+
+  try {
+    const { data } = await axios.get("/products/findByStatus");
 
     dispatch(fetchProductsSuccess(data));
   } catch (error) {
@@ -53,21 +64,18 @@ const deleteProduct = (productId) => (dispatch) => {
 };
 
 // PATCH @ /products/:id
-const toggleCompleted =
-  ({ id, completed }) =>
-  (dispatch) => {
-    const update = { completed };
+const toggleCompleted = (id, data, name) => (dispatch) => {
+  dispatch(toggleCompletedRequest());
 
-    dispatch(toggleCompletedRequest());
-
-    axios
-      .patch(`/products/${id}`, update)
-      .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
-      .catch((error) => dispatch(toggleCompletedError(error.message)));
-  };
+  axios
+    .patch(`/products/${id}/${name}`, data)
+    .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
+    .catch((error) => dispatch(toggleCompletedError(401)));
+};
 
 const productsOperations = {
   fetchProducts,
+  fetchUserProducts,
   addProduct,
   deleteProduct,
   toggleCompleted,

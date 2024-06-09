@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SearchBar from "../сomponents/SearchBar/SearchBar";
 import ProductList from "../сomponents/ProductList/ProductList";
-import { useSelector } from "react-redux";
-import { productsSelectors } from "../redux/Product";
+
+import { productsOperations } from "../redux/Product";
+import { useDispatch } from "react-redux";
 export const Home = () => {
-  const isLoading = useSelector(productsSelectors.getLoading);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(productsOperations.fetchProducts());
+  }, [dispatch]);
 
   return (
     <main>
