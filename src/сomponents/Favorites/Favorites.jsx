@@ -7,6 +7,7 @@ import ProductItem from "../ProductItem/ProductItem";
 
 import Notiflix from "notiflix";
 import authSelectors from "../../redux/auth/auth-selectors";
+import { Navigate } from "react-router-dom";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -15,10 +16,9 @@ const Favorites = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   useEffect(() => {
     dispatch(productsOperations.fetchUserProducts());
-  }, [dispatch]);
-
+  }, [dispatch, isLoggedIn]);
   const notisCircl = () => {
-    if (isLoading) {
+    if (!isLoading) {
       Notiflix.Loading.standard("Loading...");
     } else {
       Notiflix.Loading.remove();
@@ -34,7 +34,7 @@ const Favorites = () => {
 
   return (
     <>
-      {isLoggedIn && (
+      {isLoggedIn ? (
         <ul className={css.list}>
           {products.map(
             ({
@@ -77,6 +77,8 @@ const Favorites = () => {
             )
           )}
         </ul>
+      ) : (
+        <Navigate to="/login" />
       )}
     </>
   );

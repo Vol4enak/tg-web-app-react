@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useTelegram } from "../Hooks/useTelegram";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import PrivateRoute from "../сomponents/PrivateRote/PrivateRote";
+
 import {
   Home,
   BasketPage,
@@ -33,13 +33,10 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home />} />
-
+        <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
-        <PrivateRoute path="/favorite">
-          <FavoritesPage />
-        </PrivateRoute>
         <Route path="/category/:categoryName" element={<CategoryPage />} />
       </Routes>
     </div>

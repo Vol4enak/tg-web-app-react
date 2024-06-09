@@ -10,7 +10,7 @@ const useFetchProductsByCategory = (category) => {
     const fetchDataFromAPI = async () => {
       try {
         const response = await axios.get(
-          `https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api/data/productsByCategory?category=${category}`
+          `http://localhost:8000/api/data/productsByCategory?category=${category}`
         );
         setData(response.data);
       } catch (error) {

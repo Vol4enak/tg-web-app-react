@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { authOperations } from "../../redux/auth";
-// import css from "./formCard.module.css";
+import css from "./RegisterForm.module.css";
 import { useDispatch } from "react-redux";
 
 export const RegisterForm = ({ onSubmit }) => {
@@ -9,7 +9,7 @@ export const RegisterForm = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handelChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.currentTarget;
 
     switch (name) {
@@ -36,39 +36,35 @@ export const RegisterForm = ({ onSubmit }) => {
   };
 
   return (
-    <>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="email"
-            name="email"
-            onChange={handelChange}
-            value={email}
-            placeholder="email"
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            onChange={handelChange}
-            value={password}
-            placeholder="password"
-            required
-          />
-          <input
-            type="name"
-            name="name"
-            onChange={handelChange}
-            value={name}
-            placeholder="name"
-            required
-          />
+    <div className={css.register_container}>
+      <form className={css.register_form} onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          onChange={handleChange}
+          value={name}
+          placeholder="Name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          value={email}
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          name="password"
+          onChange={handleChange}
+          value={password}
+          placeholder="Password"
+          required
+        />
 
-          <button type="submit" onSubmit={onSubmit}>
-            Add info
-          </button>
-        </form>
-      </div>
-    </>
+        <button type="submit">Register</button>
+      </form>
+    </div>
   );
 };

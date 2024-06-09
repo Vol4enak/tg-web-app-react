@@ -15,7 +15,7 @@ export const Category = () => {
     return <div>Загрузка...</div>;
   }
 
-  if (error || !productsData || !productsData.products) {
+  if (error || !productsData || !productsData) {
     return <div>Произошла ошибка при загрузке данных</div>;
   }
 

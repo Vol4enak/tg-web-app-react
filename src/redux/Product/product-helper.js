@@ -9,13 +9,13 @@ const onAddFavorite = (product, dispatch, isLoggedIn) => {
   if (!isLoggedIn) {
     Notiflix.Report.failure(
       "Notiflix Failure",
-      '"Зарееструйтесь або увійдіть в свій акаунт щоб додавати товару до списку бажань."',
+      '"Зарееструйтесь або увійдіть в свій акаунт щоб додавати товари до списку бажань."',
       "Okay"
     );
     return;
   }
   const { _id, favorite } = product;
-  const updatedProduct = { favorite: !favorite ,_id};
+  const updatedProduct = { favorite: !favorite, _id };
 
   dispatch(productsOperations.toggleCompleted(_id, updatedProduct, "favorite"));
 };
@@ -24,7 +24,7 @@ const onAddBasket = (product, dispatch, isLoggedIn) => {
   if (!isLoggedIn) {
     Notiflix.Report.failure(
       "Notiflix Failure",
-      '"Зарееструйтесь або увійдіть в свій акаунт щоб додавати товару до списку бажань."',
+      '"Зарееструйтесь або увійдіть в свій акаунт щоб додавати товари до кошика."',
       "Okay"
     );
     return;

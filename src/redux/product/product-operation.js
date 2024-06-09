@@ -37,7 +37,17 @@ const fetchUserProducts = () => async (dispatch) => {
     dispatch(fetchProductsError(error.message));
   }
 };
+const fetchCategoris = () => async (dispatch) => {
+  dispatch(fetchProductsRequest());
 
+  try {
+    const { data } = await axios.get("/data/productsByCategory");
+    console.log(data);
+    dispatch(fetchProductsSuccess(data));
+  } catch (error) {
+    dispatch(fetchProductsError(error.message));
+  }
+};
 // POST @ /products
 const addProduct = (description) => (dispatch) => {
   const product = {
@@ -75,6 +85,7 @@ const toggleCompleted = (id, data, name) => (dispatch) => {
 
 const productsOperations = {
   fetchProducts,
+  fetchCategoris,
   fetchUserProducts,
   addProduct,
   deleteProduct,

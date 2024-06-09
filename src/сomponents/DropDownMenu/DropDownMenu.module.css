@@ -1,30 +1,34 @@
 .dropdownContainer {
-  width: 200px; /* Ширина контейнера меню */
-  margin: 0 auto;
+  position: relative;
+  display: inline-block;
   z-index: 50;
-  margin-top: 15px;
 }
-
 
 .menu {
-  max-height: 0;
-  transition: max-height 0.5s ease;
-  background-color: #f8f8f8;
-  border-radius: 4px;
-  margin-top: 10px;
-  max-height: 500px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.link {
-  width: 100%;
-}
-
 
 .menuItem {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-  color: var(--tg-theme-text-color);
+  display: block;
 }
 
-.menuItem:last-child {
+.menuItem a {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.menuItem a:hover {
+  background-color: #ddd;
+}
+
+.menuItem:last-child a {
   border-bottom: none;
 }

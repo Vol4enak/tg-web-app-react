@@ -20,7 +20,7 @@ const ProductList = () => {
     return <div>Загрузка...</div>;
   }
   const notisCircl = () => {
-    if (isLoading) {
+    if (!isLoading) {
       Notiflix.Loading.standard("Loading...");
     } else {
       Notiflix.Loading.remove();

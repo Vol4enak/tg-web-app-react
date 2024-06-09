@@ -2,14 +2,14 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authOperations } from "../../redux/auth";
-// import css from "./formCard.module.css";
+import css from "./LoginForm.module.css";
 // import { logIn } from "../../redux/auth/auth-slice";
 export const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const handelChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.currentTarget;
 
     switch (name) {
@@ -27,7 +27,7 @@ export const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // onSubmit(email, password,);
-    dispatch(authOperations.logIn({email, password}))
+    dispatch(authOperations.logIn({ email, password }));
     reset();
     navigate("/", { replace: true });
   };
@@ -38,26 +38,25 @@ export const LoginForm = () => {
 
   return (
     <>
-      <div>
-        <form onSubmit={handleSubmit}>
+      <div className={css.login_container}>
+        <form className={css.login_form} onSubmit={handleSubmit}>
           <input
             type="text"
             name="email"
-            onChange={handelChange}
+            onChange={handleChange}
             value={email}
-            placeholder="email"
+            placeholder="Email"
             required
           />
           <input
-            type="number"
+            type="password"
             name="password"
-            onChange={handelChange}
+            onChange={handleChange}
             value={password}
-            placeholder="password"
+            placeholder="Password"
             required
           />
-
-          <button type="submit">Add info</button>
+          <button type="submit">Login</button>
         </form>
       </div>
     </>

@@ -1,0 +1,25 @@
+.welcome_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome_message {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.logout_button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout_button:hover {
+  background-color: #0056b3;
+}
