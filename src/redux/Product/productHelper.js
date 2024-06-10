@@ -1,5 +1,5 @@
 import Notiflix from "notiflix";
-import productsOperations from "./product-operation"; // предполагается, что пути корректны
+import productsOperations from "./productOperation"; // предполагается, что пути корректны
 
 const onAddFavorite = (product, dispatch, isLoggedIn) => {
   if (!isLoggedIn) {

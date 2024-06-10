@@ -1,4 +1,4 @@
-export { default as productsOperations } from "./product-operation";
-export { default as productActions } from "./product-action";
-export { default as productReducer } from "./product-reducer";
-export { default as productsSelectors } from "./product-selector";
+export { default as productsOperations } from "./productOperation";
+export { default as productActions } from "./productAction";
+export { default as productReducer } from "./productReducer";
+export { default as productsSelectors } from "./productSelector";

@@ -11,7 +11,7 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-import productReduser from "./Product/product-reducer";
+import productReduser from "./Product/productReducer";
 import { authReducer } from "./auth";
 
 const authPersistConfig = {

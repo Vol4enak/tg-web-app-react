@@ -5,7 +5,7 @@ import { GoHeartFill } from "react-icons/go";
 import { HiShoppingCart } from "react-icons/hi";
 import { useSelector, useDispatch } from "react-redux";
 import { authSelectors } from "../../redux/auth";
-import { onAddBasket, onAddFavorite } from "../../redux/Product/product-helper";
+import { onAddBasket, onAddFavorite } from "../../redux/Product/productHelper";
 import Modal from "../Modal/Modal";
 import useToggle from "../../Hooks/useToggle";
 const ProductItem = ({

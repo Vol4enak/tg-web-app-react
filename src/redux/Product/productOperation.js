@@ -1,9 +1,8 @@
 import axios from "axios";
 
-import productActions from "./product-action";
+import productActions from "./productAction";
 
 const {
-
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
