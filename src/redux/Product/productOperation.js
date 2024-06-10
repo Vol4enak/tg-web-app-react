@@ -40,6 +40,7 @@ const fetchCategoris = (category) => async (dispatch) => {
       `/products/findByCategory?category=${category}`
     );
     dispatch(fetchProductsSuccess(data));
+    console.log(data);
   } catch (error) {
     dispatch(fetchProductsError(error.message));
   }
