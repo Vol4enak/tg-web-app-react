@@ -6,9 +6,11 @@
   gap: 10px;
   border-radius: 15px;
   width: 150px;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
   transition: box-shadow 0.3s ease;
   cursor: pointer;
+  user-select: none; /* Отключение выделения текста */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .productItem:hover {

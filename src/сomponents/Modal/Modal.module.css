@@ -23,6 +23,7 @@
 }
 
 .modal_header {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -33,12 +34,14 @@
 }
 
 .close_btn {
+  position: fixed;
+  top: 50px;
+  right: 50px;
   cursor: pointer;
-
   background-color: transparent;
   border: none;
-
   margin-left: 25px;
+  color: black;
 }
 
 .modal_body {

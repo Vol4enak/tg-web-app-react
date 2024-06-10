@@ -115,7 +115,7 @@ const ProductItem = ({
       </button>
       <img src={image} alt="" className={css.imgItem} />
       <div className={css.productItemHelper}>
-        <p className={css.titles}>{truncateString(title, 25)}</p>
+        <p className={css.titles}>{truncateString(title, 18)}</p>
         <p className={css.price}>
           <span >
             ціна: <b>{price} UAH</b>

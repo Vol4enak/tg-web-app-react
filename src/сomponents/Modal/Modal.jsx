@@ -63,7 +63,10 @@ const Modal = ({
           {popular && <p className={css.infoP}>Популярный товар!</p>}
           {discount && <p className={css.infoP}>Скидка: {discount}%</p>}
 
-          <button className={css.favorite_btn}>
+          <button
+            className={css.favorite_btn}
+            onClick={() => console.log("Добавить в избранное")}
+          >
             {activeFavorite ? "Убрать из избранного" : "Добавить в избранное"}
           </button>
           <button className={css.basket_btn}>
