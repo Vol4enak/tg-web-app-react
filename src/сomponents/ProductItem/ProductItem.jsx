@@ -85,7 +85,8 @@ const ProductItem = ({
     <li className={css.productItem} onClick={() => setIsVisibleModal(true)}>
       <button
         className={css.svgLike}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation()
           onAddHandler("favorite");
         }}
       >
@@ -99,7 +100,8 @@ const ProductItem = ({
       </button>
       <button
         className={css.svgBuy}
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation()
           onAddHandler("basket");
         }}
       >

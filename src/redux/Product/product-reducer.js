@@ -1,21 +1,22 @@
+import productActions from "./product-action";
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
-import {
+export const {
+  fetchProductsRequest,
+  fetchProductsSuccess,
+  fetchProductsError,
   userProductRequest,
   userProductSuccess,
   userProductError,
   deleteProductRequest,
   deleteProductSuccess,
   deleteProductError,
-  changeFilter,
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
-  fetchProductsRequest,
-  fetchProductsSuccess,
-  fetchProductsError,
   logoutSuccess,
-} from "./product-action";
+  changeFilter,
+} = productActions;
 
 const items = createReducer([], (builder) => {
   builder

@@ -1,13 +1,21 @@
 import axios from "axios";
-
-import {
-  toggleCompletedRequest,
-  toggleCompletedSuccess,
-  toggleCompletedError,
+import productActions from "./product-action";
+export const {
   fetchProductsRequest,
   fetchProductsSuccess,
   fetchProductsError,
-} from "./product-action";
+  userProductRequest,
+  userProductSuccess,
+  userProductError,
+  deleteProductRequest,
+  deleteProductSuccess,
+  deleteProductError,
+  toggleCompletedRequest,
+  toggleCompletedSuccess,
+  toggleCompletedError,
+  logoutSuccess,
+  changeFilter,
+} = productActions;
 
 // GET @ /products
 const fetchProducts = () => async (dispatch) => {
@@ -25,7 +33,6 @@ const fetchUserProducts = () => async (dispatch) => {
   try {
     const { data } = await axios.get("/products/findByStatus");
     dispatch(toggleCompletedSuccess(data));
-   
   } catch (error) {
     dispatch(toggleCompletedSuccess(error.message));
   }
