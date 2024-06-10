@@ -1,21 +1,13 @@
 import axios from "axios";
-import productActions from "./product-action";
-export const {
-  fetchProductsRequest,
-  fetchProductsSuccess,
-  fetchProductsError,
-  userProductRequest,
-  userProductSuccess,
-  userProductError,
-  deleteProductRequest,
-  deleteProductSuccess,
-  deleteProductError,
+
+import {
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
-  logoutSuccess,
-  changeFilter,
-} = productActions;
+  fetchProductsRequest,
+  fetchProductsSuccess,
+  fetchProductsError,
+} from "./product-action";
 
 // GET @ /products
 const fetchProducts = () => async (dispatch) => {
