@@ -20,22 +20,14 @@ import {
 const items = createReducer([], (builder) => {
   builder
     .addCase(fetchProductsSuccess, (_, { payload }) => payload)
-
     .addCase(deleteProductSuccess, (state, { payload }) =>
       state.filter(({ id }) => id !== payload)
     );
 });
-const itemsUserRefresh = createReducer([], (builder) => {
-  builder
-    .addCase(toggleCompletedSuccess, (_, { payload }) => payload)
-    .addCase(logoutSuccess, () => []); // Обрабатываем действие логаута
-});
-
 const itemsUser = createReducer([], (builder) => {
   builder
-
-    .addCase(userProductSuccess, (_, { payload }) => payload)
-    .addCase(logoutSuccess, () => []); // Обрабатываем действие логаута
+    .addCase(toggleCompletedSuccess, (_, { payload }) => payload)
+    .addCase(logoutSuccess, () => []); 
 });
 
 const loading = createReducer(false, (builder) => {
@@ -68,7 +60,6 @@ const error = createReducer(null, (builder) => {
 
 export default combineReducers({
   items,
-  itemsUserRefresh,
   itemsUser,
   filter,
   loading,

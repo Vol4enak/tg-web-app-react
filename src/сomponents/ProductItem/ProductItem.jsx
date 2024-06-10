@@ -1,11 +1,13 @@
 import React from "react";
 import css from "./ProductItem.module.css";
+import useClickOutside from "../../Hooks/useClickOutside";
 import { GoHeartFill } from "react-icons/go";
 import { HiShoppingCart } from "react-icons/hi";
 import { useSelector, useDispatch } from "react-redux";
 import { authSelectors } from "../../redux/auth";
 import { onAddBasket, onAddFavorite } from "../../redux/Product/product-helper";
-
+import Modal from "../Modal/Modal";
+import useToggle from "../../Hooks/useToggle";
 const ProductItem = ({
   _id,
   id,
@@ -20,10 +22,20 @@ const ProductItem = ({
   popular,
   onSale,
   discount,
-  active,
+  activeFavorite,
+  activeBasket,
 }) => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const dispatch = useDispatch();
+  const [isVisibleModal, setIsVisibleModal] = useToggle(false);
+
+  const navRef = useClickOutside(
+    isVisibleModal,
+    () => {
+      setIsVisibleModal(false);
+    },
+    css.noScroll
+  );
 
   const filterUndefinedProperties = (obj) => {
     const filteredObj = {};
@@ -60,8 +72,8 @@ const ProductItem = ({
   };
 
   const truncateString = (str, num) => {
-    if (!str || typeof str !== 'string') {
-      return '';
+    if (!str || typeof str !== "string") {
+      return "";
     }
     if (str.length <= num) {
       return str;
@@ -70,7 +82,7 @@ const ProductItem = ({
   };
 
   return (
-    <li className={css.productItem}>
+    <li className={css.productItem} onClick={() => setIsVisibleModal(true)}>
       <button
         className={css.svgLike}
         onClick={() => {
@@ -81,7 +93,7 @@ const ProductItem = ({
           style={{
             width: "15px",
             height: "15px",
-            fill: active ? "red" : "grey", // Используем красный цвет, если продукт в избранном
+            fill: activeFavorite ? "red" : "grey", // Используем красный цвет, если продукт в избранном
           }}
         />
       </button>
@@ -95,7 +107,7 @@ const ProductItem = ({
           style={{
             width: "15px",
             height: "15px",
-            // fill: basket ? "green" : "grey", // Используем зеленый цвет, если продукт в корзине
+            fill: activeBasket ? "green" : "grey", // Используем зеленый цвет, если продукт в корзине
           }}
         />
       </button>
@@ -106,6 +118,28 @@ const ProductItem = ({
           ціна: <b>{price} UAH</b>
         </span>
       </p>
+      {isVisibleModal && (
+        <Modal
+          navRef={navRef}
+          key={_id}
+          _id={_id}
+          id={id}
+          title={title}
+          image={image}
+          price={price}
+          description={description}
+          brand={brand}
+          model={model}
+          color={color}
+          category={category}
+          onSale={onSale}
+          popular={popular}
+          discount={discount}
+          activeFavorite={activeFavorite}
+          activeBasket={activeBasket}
+          setIsVisibleModal={setIsVisibleModal}
+        />
+      )}
     </li>
   );
 };

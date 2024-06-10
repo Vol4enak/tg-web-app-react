@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import css from "../ProductList/ProductList.module.css";
+import ProductList from "../ProductList/ProductList";
 import { productsOperations, productsSelectors } from "../../redux/Product";
-import ProductItem from "../ProductItem/ProductItem";
-// import { updateProductsWithActiveField } from "../../utils/productUtils";
+import { filterActiveUserProducts } from "../../utils/filterActiveUserProduct";
 // import Notiflix from "notiflix";
 import authSelectors from "../../redux/auth/auth-selectors";
 import { useNavigate } from "react-router-dom";
@@ -11,15 +10,28 @@ import { useNavigate } from "react-router-dom";
 const Favorites = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-
-  const userProductsRefresh = useSelector(
-    productsSelectors.getUserProductRefresh
-  );
+  const isToken = useSelector(authSelectors.getUserToken);
+  const allProducts = useSelector(productsSelectors.getAllProducts);
   const userProducts = useSelector(productsSelectors.getUserProduct);
+  const userBasketProducts = useSelector(productsSelectors.getUserBasket);
+
   const navigate = useNavigate();
   useEffect(() => {
-    dispatch(productsOperations.fetchUserProducts());
-  }, [dispatch]);
+    if (!isToken) {
+      navigate("/", { replace: true });
+    }
+  }, [isToken, navigate]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(productsOperations.fetchUserProducts());
+    }
+  }, [dispatch, isLoggedIn]);
+  const updatedProducts = filterActiveUserProducts(
+    allProducts,
+    userProducts,
+    userBasketProducts
+  );
   // const notisCircl = () => {
   //   if (!isLoading) {
   //     Notiflix.Loading.standard("Loading...");
@@ -28,56 +40,12 @@ const Favorites = () => {
   //   }
   // };
   // notisCircl();
-  console.log(isLoggedIn);
-  if (!userProductsRefresh) {
+
+  if (!updatedProducts) {
     return <div>Загрузка...</div>;
   }
 
-  return (
-    <>
-      {isLoggedIn ? (
-        <ul className={css.list}>
-          {userProductsRefresh.map(
-            ({
-              _id,
-              id,
-              title,
-              image,
-              price,
-              description,
-              brand,
-              model,
-              color,
-              category,
-              popular,
-              onSale,
-              discount,
-            }) => (
-              <ProductItem
-                key={_id}
-                _id={_id}
-                id={id}
-                title={title}
-                image={image}
-                price={price}
-                description={description}
-                brand={brand}
-                model={model}
-                color={color}
-                category={category}
-                onSale={onSale}
-                popular={popular}
-                discount={discount}
-                active={true}
-              />
-            )
-          )}
-        </ul>
-      ) : (
-        navigate("/", { replace: true })
-      )}
-    </>
-  );
+  return <ProductList products={updatedProducts} />;
 };
 
 export default Favorites;

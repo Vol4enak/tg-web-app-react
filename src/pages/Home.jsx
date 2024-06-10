@@ -1,22 +1,19 @@
 import React, { useEffect } from "react";
 import SearchBar from "../сomponents/SearchBar/SearchBar";
-import ProductList from "../сomponents/ProductList/ProductList";
+import Home from "../сomponents/Home/Home";
 
 import { productsOperations } from "../redux/Product";
 import { useDispatch } from "react-redux";
-export const Home = () => {
+export const HomePage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(productsOperations.fetchProducts());
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(productsOperations.fetchUserProducts());
   }, [dispatch]);
 
   return (
     <main>
       <SearchBar />
-      <ProductList />
+      <Home />
     </main>
   );
 };

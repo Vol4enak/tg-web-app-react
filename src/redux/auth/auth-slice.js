@@ -46,7 +46,7 @@ const authSlice = createSlice({
       state.error = null;
     });
     builder.addCase(authOperations.fetchCurrentUser.rejected, (state, action) => {
-      state.error = action.payload || action.error.message;
+      state.error = null
     });
   },
 });

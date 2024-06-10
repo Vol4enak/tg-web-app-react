@@ -1,7 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-
-axios.defaults.baseURL = "http://localhost:8000/api";
+import { logoutRequest, logoutSuccess } from "./auth-action";
+axios.defaults.baseURL =
+  "https://tg-web-app-node-5618b5f5f78b.herokuapp.com/api";
 
 const token = {
   set(token) {
@@ -40,12 +41,21 @@ const logIn = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
   }
 });
 
-const logOut = createAsyncThunk("auth/logout", async () => {
+const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  // Используем thunkAPI.dispatch для доступа к методу dispatch
+  thunkAPI.dispatch(logoutRequest());
+
   try {
     await axios.post("/auth/logout");
 
     token.unset();
-  } catch (error) {}
+    // Опять используем thunkAPI.dispatch для диспатча
+    thunkAPI.dispatch(logoutSuccess());
+  } catch (error) {
+    console.error(error);
+    // В случае ошибки, мы также можем использовать thunkAPI.rejectWithValue, чтобы обработать ошибку
+    return thunkAPI.rejectWithValue("Logout failed");
+  }
 });
 
 const fetchCurrentUser = createAsyncThunk(
@@ -54,9 +64,7 @@ const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken);
     if (persistedToken === null) {
-      console.log("Токена нет, уходим из fetchCurrentUser");
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);

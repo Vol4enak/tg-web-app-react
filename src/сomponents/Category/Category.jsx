@@ -1,57 +1,43 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import css from "../ProductList/ProductList.module.css";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductList from "../ProductList/ProductList";
+import { updateProductsWithActiveField } from "../../utils/productUtils";
+import { authSelectors } from "../../redux/auth";
 import { productsOperations, productsSelectors } from "../../redux/Product";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const Category = () => {
-  const dispatch = useDispatch();
   const params = useParams();
-  const products = useSelector(productsSelectors.getAllProducts);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const allProducts = useSelector(productsSelectors.getAllProducts);
+  const isToken = useSelector(authSelectors.getUserToken);
+  const userProducts = useSelector(productsSelectors.getUserProduct);
+  const userBasketProducts = useSelector(productsSelectors.getUserBasket);
+  const updatedProducts = updateProductsWithActiveField(
+    allProducts,
+    userProducts,
+    userBasketProducts
+  );
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isToken) {
+      navigate("/", { replace: true });
+    }
+  }, [isToken, navigate]);
+
   useEffect(() => {
     dispatch(productsOperations.fetchCategoris(params.categoryName));
   }, [dispatch, params.categoryName]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(productsOperations.fetchUserProducts());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <main>
-      <ul className={css.list}>
-        {products.map(
-          ({
-            _id,
-            id,
-            title,
-            image,
-            price,
-            description,
-            brand,
-            model,
-            color,
-            category,
-            popular,
-            onSale,
-            discount,
-          
-          }) => (
-            <ProductItem
-              key={id}
-              _id={_id}
-              id={id}
-              title={title}
-              image={image}
-              price={price}
-              description={description}
-              brand={brand}
-              model={model}
-              color={color}
-              category={category}
-              onSale={onSale}
-              popular={popular}
-              discount={discount}
-              
-            />
-          )
-        )}
-      </ul>
+      <ProductList products={updatedProducts} />
     </main>
   );
 };

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import {
-  Home,
+  HomePage,
   BasketPage,
   CategoryPage,
   FavoritesPage,
@@ -32,7 +32,7 @@ function App() {
         <NavBar />
       </header>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/basket" element={<BasketPage />} />
         <Route path="/login" element={<LoginPage />}></Route>

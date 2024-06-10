@@ -2,11 +2,35 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 130px;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  width: 150px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
+
+.productItem:hover {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .titles {
-  color: var(--tg-theme-text-color);
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
+
+.price {
+  font-size: 14px;
+  color: #333;
+}
+
+.price b {
+  color: #ff4500;
+}
+
 .imgItem {
   background: transparent;
   width: 100%;
@@ -14,19 +38,10 @@
   object-fit: contain;
   margin: 0 auto;
 }
-.price {
-  color: var(--tg-theme-text-color);
-}
-.description {
-  font-size: 0.8em;
-  color: var(--tg-theme-text-color);
-}
 
-.add_btn {
-  width: 100%;
-}
 .svgLike {
   position: absolute;
+  left: 5px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -39,7 +54,7 @@
 }
 .svgBuy {
   position: absolute;
-  right: 0;
+  right: 5px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -49,4 +64,7 @@
   display: flex; /* Используйте flex для центрирования содержимого */
   align-items: center;
   justify-content: center;
+}
+.noScroll {
+  overflow: hidden;
 }

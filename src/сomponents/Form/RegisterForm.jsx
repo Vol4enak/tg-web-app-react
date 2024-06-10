@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { authOperations, authSelectors } from "../../redux/auth";
 import css from "./RegisterForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,7 @@ export const RegisterForm = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const isToken = useSelector(authSelectors.getUserToken);
   const error = useSelector(authSelectors.getUserErrorReg);
   // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const handleChange = (e) => {
@@ -32,11 +33,18 @@ export const RegisterForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
-    
+  };
+  const reset = () => {
     setEmail("");
     setPassword("");
     setName("");
   };
+  useEffect(() => {
+    if (isToken) {
+      navigate("/", { replace: true });
+      reset();
+    }
+  }, [isToken, navigate]);
 
   return (
     <div className={css.register_container}>
@@ -70,9 +78,9 @@ export const RegisterForm = ({ onSubmit }) => {
         <p>
           Already have account? <a href="/login">login!</a>
         </p>
-        {error ? (
+        {error &&
           <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
-        ): (navigate("/", { replace: true }))}
+        }
       </form>
     </div>
   );

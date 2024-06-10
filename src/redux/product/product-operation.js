@@ -1,11 +1,6 @@
 import axios from "axios";
+
 import {
-  userProductRequest,
-  userProductSuccess,
-  userProductError,
-  deleteProductRequest,
-  deleteProductSuccess,
-  deleteProductError,
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
@@ -25,18 +20,16 @@ const fetchProducts = () => async (dispatch) => {
   }
 };
 
-
 const fetchUserProducts = () => async (dispatch) => {
-  dispatch(userProductRequest());
+  dispatch(toggleCompletedSuccess());
   try {
     const { data } = await axios.get("/products/findByStatus");
-    dispatch(userProductSuccess(data));
-    console.log(data);
+    dispatch(toggleCompletedSuccess(data));
+   
   } catch (error) {
-    dispatch(userProductError(error.message));
+    dispatch(toggleCompletedSuccess(error.message));
   }
 };
-
 
 const fetchCategoris = (category) => async (dispatch) => {
   dispatch(fetchProductsRequest());
@@ -46,42 +39,34 @@ const fetchCategoris = (category) => async (dispatch) => {
     const { data } = await axios.get(
       `/products/findByCategory?category=${category}`
     );
-    console.log(data);
     dispatch(fetchProductsSuccess(data));
   } catch (error) {
     dispatch(fetchProductsError(error.message));
   }
 };
 
-// DELETE @ /products/:id
-const deleteProduct = (productId) => (dispatch) => {
-  dispatch(deleteProductRequest());
-
-  axios
-    .delete(`/products/${productId}`)
-    .then(() => dispatch(deleteProductSuccess(productId)))
-    .catch((error) => dispatch(deleteProductError(error.message)));
-};
-
 // PATCH @ /products/:id
 const toggleCompleted = (id, data, name) => (dispatch) => {
   dispatch(toggleCompletedRequest());
-
   axios
     .patch(`/products/${id}/${name}`, data)
     .then(({ data }) => {
-      dispatch(toggleCompletedSuccess(data.favorites));
-      console.log(data.favorites);
+      dispatch(toggleCompletedSuccess(data));
     })
-    .catch((error) => dispatch(toggleCompletedError(error)));
+    .catch((error) => {
+      const errorInfo = {
+        message: error.message,
+        status: error.response ? error.response.status : null,
+        data: error.response ? error.response.data : null,
+      };
+      dispatch(toggleCompletedError(errorInfo));
+    });
 };
 
 const productsOperations = {
   fetchProducts,
   fetchCategoris,
   fetchUserProducts,
-
-  deleteProduct,
   toggleCompleted,
 };
 export default productsOperations;
