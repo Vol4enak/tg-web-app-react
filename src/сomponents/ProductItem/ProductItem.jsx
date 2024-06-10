@@ -86,7 +86,7 @@ const ProductItem = ({
       <button
         className={css.svgLike}
         onClick={(e) => {
-          e.stopPropagation()
+          e.stopPropagation();
           onAddHandler("favorite");
         }}
       >
@@ -101,7 +101,7 @@ const ProductItem = ({
       <button
         className={css.svgBuy}
         onClick={(e) => {
-          e.stopPropagation()
+          e.stopPropagation();
           onAddHandler("basket");
         }}
       >
@@ -114,12 +114,14 @@ const ProductItem = ({
         />
       </button>
       <img src={image} alt="" className={css.imgItem} />
-      <p className={css.titles}>{truncateString(title, 25)}</p>
-      <p className={css.price}>
-        <span>
-          ціна: <b>{price} UAH</b>
-        </span>
-      </p>
+      <div className={css.productItemHelper}>
+        <p className={css.titles}>{truncateString(title, 25)}</p>
+        <p className={css.price}>
+          <span >
+            ціна: <b>{price} UAH</b>
+          </span>
+        </p>
+      </div>
       {isVisibleModal && (
         <Modal
           navRef={navRef}

@@ -1,39 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useClickOutside from "../../Hooks/useClickOutside"; // ваш хук
 import css from "./DropDownMenu.module.css";
 
-export default function DropDownMenu() {
+export default function DropDownMenu({ setIsVisibleCategory }) {
+  const menuRef = useClickOutside(true, () => {
+    setIsVisibleCategory(false);
+  });
+
   return (
-    <div className={css.dropdownContainer}>
+    <div className={css.dropdownContainer} ref={menuRef}>
       <ul className={css.menu}>
         <li className={css.menuItem}>
           <Link className={css.link} to={`/category/tv`}>
-            tv
+            TV
           </Link>
         </li>
         <li className={css.menuItem}>
           <Link className={css.link} to={`/category/audio`}>
-            audio
+            Audio
           </Link>
         </li>
         <li className={css.menuItem}>
           <Link className={css.link} to={`/category/laptop`}>
-            laptop
+            Laptop
           </Link>
         </li>
         <li className={css.menuItem}>
           <Link className={css.link} to={`/category/mobile`}>
-            mobile
+            Mobile
           </Link>
         </li>
         <li className={css.menuItem}>
           <Link className={css.link} to={`/category/gaming`}>
-            gaming
+            Gaming
           </Link>
         </li>
         <li className={css.menuItem}>
           <Link className={css.link} to={`/category/appliances`}>
-            appliances
+            Appliances
           </Link>
         </li>
       </ul>

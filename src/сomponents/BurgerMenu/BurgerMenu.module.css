@@ -25,6 +25,6 @@
   font-size: 24px;
 }
 .burgtrItemLink {
-  color: black;
+  color: var(--tg-theme-button-text-color);
   text-decoration: none;
 }

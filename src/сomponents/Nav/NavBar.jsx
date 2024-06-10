@@ -1,21 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaShoppingBasket } from "react-icons/fa";
-import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { TbCategory } from "react-icons/tb";
+import { BsFillEmojiHeartEyesFill } from "react-icons/bs";
+import { FaShoppingBasket } from "react-icons/fa";
 import { TiThMenu } from "react-icons/ti";
+import Notiflix from "notiflix";
+import useToggle from "../../Hooks/useToggle";
+import useClickOutside from "../../Hooks/useClickOutside";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import { authSelectors } from "../../redux/auth";
-import { useSelector } from "react-redux";
-import useClickOutside from "../../Hooks/useClickOutside";
-import useToggle from "../../Hooks/useToggle";
 import css from "./NavBar.module.css";
-import Notiflix from "notiflix";
+
 function NavBar() {
   const [isVisibleMenu, setIsVisibleMenu] = useToggle(false);
   const [isVisibleCategory, setIsVisibleCategory] = useToggle(false);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
   const navRef = useClickOutside(
     isVisibleMenu,
     () => {
@@ -23,6 +25,7 @@ function NavBar() {
     },
     css.noScroll
   );
+
   Notiflix.Notify.init({
     position: "right-bottom",
   });
@@ -43,6 +46,7 @@ function NavBar() {
             onClick={() => {
               setIsVisibleCategory(true);
             }}
+            navRef={navRef}
           >
             <TbCategory
               style={{
@@ -52,7 +56,9 @@ function NavBar() {
               }}
             />
             <br />
-            {isVisibleCategory && <DropDownMenu />}
+            {isVisibleCategory && (
+              <DropDownMenu setIsVisibleCategory={setIsVisibleCategory} />
+            )}
           </li>
           <li className={css.navList_item}>
             <Link

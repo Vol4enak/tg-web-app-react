@@ -71,6 +71,7 @@ textarea {
   margin-right: auto;
 }
 .container {
+  background-color: black;
   padding: 16px;
   max-width: 480px;
   margin-left: auto;

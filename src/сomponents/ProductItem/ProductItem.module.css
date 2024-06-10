@@ -4,12 +4,11 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
   border-radius: 15px;
   width: 150px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .productItem:hover {
@@ -20,11 +19,12 @@
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 5px;
+  color: var(--tg-theme-button-text-color);
 }
 
 .price {
   font-size: 14px;
-  color: #333;
+  color: var(--tg-theme-button-text-color);
 }
 
 .price b {
@@ -32,13 +32,17 @@
 }
 
 .imgItem {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
   background: transparent;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   margin: 0 auto;
 }
-
+.productItemHelper {
+  padding: 5px;
+}
 .svgLike {
   position: absolute;
   left: 5px;
