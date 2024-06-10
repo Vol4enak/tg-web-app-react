@@ -6,7 +6,7 @@ import { filterActiveUserProducts } from "../../utils/filterActiveUserProduct";
 // import Notiflix from "notiflix";
 import authSelectors from "../../redux/auth/auth-selectors";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+
 const Favorites = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -14,8 +14,6 @@ const Favorites = () => {
   const allProducts = useSelector(productsSelectors.getAllProducts);
   const userProducts = useSelector(productsSelectors.getUserProduct);
   const userBasketProducts = useSelector(productsSelectors.getUserBasket);
-  const ref = useRef();
-  console.log(ref)
   const navigate = useNavigate();
   useEffect(() => {
     if (!isToken) {
