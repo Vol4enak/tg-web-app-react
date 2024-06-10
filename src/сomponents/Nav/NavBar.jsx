@@ -6,13 +6,16 @@ import { TbCategory } from "react-icons/tb";
 import { TiThMenu } from "react-icons/ti";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-
+import { authSelectors } from "../../redux/auth";
+import { useSelector } from "react-redux";
 import useClickOutside from "../../Hooks/useClickOutside";
 import useToggle from "../../Hooks/useToggle";
 import css from "./NavBar.module.css";
+import Notiflix from "notiflix";
 function NavBar() {
   const [isVisibleMenu, setIsVisibleMenu] = useToggle(false);
   const [isVisibleCategory, setIsVisibleCategory] = useToggle(false);
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const navRef = useClickOutside(
     isVisibleMenu,
     () => {
@@ -20,6 +23,9 @@ function NavBar() {
     },
     css.noScroll
   );
+  Notiflix.Notify.init({
+    position: "right-bottom",
+  });
 
   return (
     <div className={css.navBox}>
@@ -49,7 +55,16 @@ function NavBar() {
             {isVisibleCategory && <DropDownMenu />}
           </li>
           <li className={css.navList_item}>
-            <Link to="/favorites">
+            <Link
+              to={isLoggedIn ? "/favorites" : "/"}
+              onClick={() => {
+                if (!isLoggedIn) {
+                  Notiflix.Notify.info(
+                    "Щоб переглянути свої вподобайки будьласка увійдіть в акаунт"
+                  );
+                }
+              }}
+            >
               <BsFillEmojiHeartEyesFill
                 style={{
                   width: "30px",
@@ -60,14 +75,23 @@ function NavBar() {
             </Link>
           </li>
           <li className={css.navList_item}>
-            <Link to="/basket">
+            <Link
+              to={isLoggedIn ? "/basket" : "/"}
+              onClick={() => {
+                if (!isLoggedIn) {
+                  Notiflix.Notify.info(
+                    "Щоб переглянути свій кошик будьласка увійдіть в акаунт"
+                  );
+                }
+              }}
+            >
               <FaShoppingBasket
                 style={{
                   width: "30px",
                   height: "30px",
                   fill: "var(--tg-theme-text-color)",
                 }}
-              />{" "}
+              />
             </Link>
           </li>
         </ul>

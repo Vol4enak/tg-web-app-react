@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { authOperations } from "../../redux/auth";
+import { authOperations, authSelectors } from "../../redux/auth";
 import css from "./RegisterForm.module.css";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 export const RegisterForm = ({ onSubmit }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
+  const error = useSelector(authSelectors.getUserErrorReg);
+  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
 
@@ -30,6 +32,7 @@ export const RegisterForm = ({ onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(authOperations.register({ name, email, password }));
+    
     setEmail("");
     setPassword("");
     setName("");
@@ -64,6 +67,12 @@ export const RegisterForm = ({ onSubmit }) => {
         />
 
         <button type="submit">Register</button>
+        <p>
+          Already have account? <a href="/login">login!</a>
+        </p>
+        {error ? (
+          <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
+        ): (navigate("/", { replace: true }))}
       </form>
     </div>
   );

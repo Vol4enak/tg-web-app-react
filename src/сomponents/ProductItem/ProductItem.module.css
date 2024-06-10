@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 130px;
 }
-.title {
+.titles {
   color: var(--tg-theme-text-color);
 }
 .imgItem {

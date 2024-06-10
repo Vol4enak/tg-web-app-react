@@ -1,8 +1,8 @@
 import axios from "axios";
 import {
-  addProductRequest,
-  addProductSuccess,
-  addProductError,
+  userProductRequest,
+  userProductSuccess,
+  userProductError,
   deleteProductRequest,
   deleteProductSuccess,
   deleteProductError,
@@ -17,50 +17,40 @@ import {
 // GET @ /products
 const fetchProducts = () => async (dispatch) => {
   dispatch(fetchProductsRequest());
-
   try {
     const { data } = await axios.get("/products/data");
-    console.log(data);
     dispatch(fetchProductsSuccess(data));
   } catch (error) {
     dispatch(fetchProductsError(error.message));
   }
 };
-const fetchUserProducts = () => async (dispatch) => {
-  dispatch(fetchProductsRequest());
 
+
+const fetchUserProducts = () => async (dispatch) => {
+  dispatch(userProductRequest());
   try {
     const { data } = await axios.get("/products/findByStatus");
-
-    dispatch(fetchProductsSuccess(data));
+    dispatch(userProductSuccess(data));
+    console.log(data);
   } catch (error) {
-    dispatch(fetchProductsError(error.message));
+    dispatch(userProductError(error.message));
   }
 };
-const fetchCategoris = () => async (dispatch) => {
+
+
+const fetchCategoris = (category) => async (dispatch) => {
   dispatch(fetchProductsRequest());
 
   try {
-    const { data } = await axios.get("/data/productsByCategory");
+    // Передаем категорию в запросе как query параметр
+    const { data } = await axios.get(
+      `/products/findByCategory?category=${category}`
+    );
     console.log(data);
     dispatch(fetchProductsSuccess(data));
   } catch (error) {
     dispatch(fetchProductsError(error.message));
   }
-};
-// POST @ /products
-const addProduct = (description) => (dispatch) => {
-  const product = {
-    description,
-    completed: false,
-  };
-
-  dispatch(addProductRequest());
-
-  axios
-    .post("/products", product)
-    .then(({ data }) => dispatch(addProductSuccess(data)))
-    .catch((error) => dispatch(addProductError(error.message)));
 };
 
 // DELETE @ /products/:id
@@ -79,15 +69,18 @@ const toggleCompleted = (id, data, name) => (dispatch) => {
 
   axios
     .patch(`/products/${id}/${name}`, data)
-    .then(({ data }) => dispatch(toggleCompletedSuccess(data)))
-    .catch((error) => dispatch(toggleCompletedError(401)));
+    .then(({ data }) => {
+      dispatch(toggleCompletedSuccess(data.favorites));
+      console.log(data.favorites);
+    })
+    .catch((error) => dispatch(toggleCompletedError(error)));
 };
 
 const productsOperations = {
   fetchProducts,
   fetchCategoris,
   fetchUserProducts,
-  addProduct,
+
   deleteProduct,
   toggleCompleted,
 };

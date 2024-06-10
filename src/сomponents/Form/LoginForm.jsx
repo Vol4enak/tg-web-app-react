@@ -1,14 +1,17 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { authOperations } from "../../redux/auth";
+import { authOperations, authSelectors } from "../../redux/auth";
 import css from "./LoginForm.module.css";
-// import { logIn } from "../../redux/auth/auth-slice";
+
 export const LoginForm = () => {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const error = useSelector(authSelectors.getUserErrorLogin);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
 
@@ -24,17 +27,23 @@ export const LoginForm = () => {
         return;
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    // onSubmit(email, password,);
     dispatch(authOperations.logIn({ email, password }));
-    reset();
-    navigate("/", { replace: true });
   };
+
   const reset = () => {
     setEmail("");
     setPassword("");
   };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/", { replace: true });
+      reset();
+    }
+  }, [isLoggedIn, navigate]);
 
   return (
     <>
@@ -57,6 +66,14 @@ export const LoginForm = () => {
             required
           />
           <button type="submit">Login</button>
+          <p>
+            Dont have account? <a href="/register">Register!</a>
+          </p>
+          {error && (
+            <div style={{ color: "red", marginTop: "10px" }}>
+              {error.message}
+            </div>
+          )}
         </form>
       </div>
     </>

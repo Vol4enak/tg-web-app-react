@@ -2,10 +2,6 @@ import Notiflix from "notiflix";
 import productsOperations from "./product-operation"; // предполагается, что пути корректны
 
 const onAddFavorite = (product, dispatch, isLoggedIn) => {
-  console.log(product._id, ": product");
-  console.log(dispatch, ": dispatch");
-  console.log(isLoggedIn, ": isLoggedIn");
-
   if (!isLoggedIn) {
     Notiflix.Report.failure(
       "Notiflix Failure",
@@ -14,8 +10,8 @@ const onAddFavorite = (product, dispatch, isLoggedIn) => {
     );
     return;
   }
-  const { _id, favorite } = product;
-  const updatedProduct = { favorite: !favorite, _id };
+  const { _id } = product;
+  const updatedProduct = { _id };
 
   dispatch(productsOperations.toggleCompleted(_id, updatedProduct, "favorite"));
 };
@@ -29,8 +25,8 @@ const onAddBasket = (product, dispatch, isLoggedIn) => {
     );
     return;
   }
-  const { _id, basket } = product;
-  const updatedProduct = { basket: !basket };
+  const { _id } = product;
+  const updatedProduct = { _id };
 
   dispatch(productsOperations.toggleCompleted(_id, updatedProduct, "basket"));
 };

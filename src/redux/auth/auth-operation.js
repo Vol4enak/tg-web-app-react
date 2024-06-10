@@ -12,29 +12,40 @@ const token = {
   },
 };
 
-const register = createAsyncThunk("auth/register", async (credentials) => {
-  try {
-    const { data } = await axios.post("/auth/register", credentials);
-    token.set(data.token);
-    return data;
-  } catch (error) {}
-});
+const register = createAsyncThunk(
+  "auth/register",
+  async (credentials, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/auth/register", credentials);
+      token.set(data.token);
+      return data;
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        return thunkAPI.rejectWithValue("Email already in use");
+      }
+      return thunkAPI.rejectWithValue("Registration failed");
+    }
+  }
+);
 
-const logIn = createAsyncThunk("auth/login", async (credentials) => {
+const logIn = createAsyncThunk("auth/login", async (credentials, thunkAPI) => {
   try {
     const { data } = await axios.post("/auth/login", credentials);
+
     token.set(data.token);
+
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return thunkAPI.rejectWithValue("Logout failed");
+  }
 });
 
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
     await axios.post("/auth/logout");
+
     token.unset();
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
+  } catch (error) {}
 });
 
 const fetchCurrentUser = createAsyncThunk(

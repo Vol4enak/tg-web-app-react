@@ -6,9 +6,11 @@ import { productsOperations } from "../redux/Product";
 import { useDispatch } from "react-redux";
 export const Home = () => {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(productsOperations.fetchProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(productsOperations.fetchUserProducts());
   }, [dispatch]);
 
   return (

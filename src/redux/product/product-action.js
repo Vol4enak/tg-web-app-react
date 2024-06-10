@@ -8,9 +8,9 @@ export const fetchProductsSuccess = createAction(
 );
 export const fetchProductsError = createAction("products/fetchProductsError");
 
-export const addProductRequest = createAction("products/addProductRequest");
-export const addProductSuccess = createAction("products/addProductSuccess");
-export const addProductError = createAction("products/addProductError");
+export const userProductRequest = createAction("products/UserProductRequest");
+export const userProductSuccess = createAction("products/UserProductSuccess");
+export const userProductError = createAction("products/UserProductError");
 
 export const deleteProductRequest = createAction(
   "products/deleteProductRequest"
@@ -29,5 +29,5 @@ export const toggleCompletedSuccess = createAction(
 export const toggleCompletedError = createAction(
   "products/toggleProductCompletedError"
 );
-
+export const logoutSuccess = createAction("auth/logoutSuccess");
 export const changeFilter = createAction("products/changeFilter");

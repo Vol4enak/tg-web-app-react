@@ -2,9 +2,10 @@ import React from "react";
 import css from "./ProductItem.module.css";
 import { GoHeartFill } from "react-icons/go";
 import { HiShoppingCart } from "react-icons/hi";
-import authSelectors from "../../redux/auth/auth-selectors";
 import { useSelector, useDispatch } from "react-redux";
+import { authSelectors } from "../../redux/auth";
 import { onAddBasket, onAddFavorite } from "../../redux/Product/product-helper";
+
 const ProductItem = ({
   _id,
   id,
@@ -19,11 +20,11 @@ const ProductItem = ({
   popular,
   onSale,
   discount,
-  favorite,
-  basket,
+  active,
 }) => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const dispatch = useDispatch();
+
   const filterUndefinedProperties = (obj) => {
     const filteredObj = {};
     for (const [key, value] of Object.entries(obj)) {
@@ -33,7 +34,7 @@ const ProductItem = ({
     }
     return filteredObj;
   };
- 
+
   const onAddHandler = (actionType) => {
     const product = {
       _id,
@@ -49,8 +50,6 @@ const ProductItem = ({
       popular,
       onSale,
       discount,
-      favorite,
-      basket,
     };
     const filteredProduct = filterUndefinedProperties(product);
     if (actionType === "favorite") {
@@ -61,6 +60,9 @@ const ProductItem = ({
   };
 
   const truncateString = (str, num) => {
+    if (!str || typeof str !== 'string') {
+      return '';
+    }
     if (str.length <= num) {
       return str;
     }
@@ -79,7 +81,7 @@ const ProductItem = ({
           style={{
             width: "15px",
             height: "15px",
-            fill: favorite ? "red" : "grey", // Используем красный цвет, если продукт в избранном
+            fill: active ? "red" : "grey", // Используем красный цвет, если продукт в избранном
           }}
         />
       </button>
@@ -93,12 +95,12 @@ const ProductItem = ({
           style={{
             width: "15px",
             height: "15px",
-            fill: basket ? "green" : "grey", // Используем зеленый цвет, если продукт в корзине
+            // fill: basket ? "green" : "grey", // Используем зеленый цвет, если продукт в корзине
           }}
         />
       </button>
       <img src={image} alt="" className={css.imgItem} />
-      <p className={css.title}>{truncateString(title, 25)}</p>
+      <p className={css.titles}>{truncateString(title, 25)}</p>
       <p className={css.price}>
         <span>
           ціна: <b>{price} UAH</b>

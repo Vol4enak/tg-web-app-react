@@ -2,33 +2,34 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import css from "../ProductList/ProductList.module.css";
 import { productsOperations, productsSelectors } from "../../redux/Product";
-import { onAddBasket, onAddFavorite } from "../../redux/Product/product-helper";
 import ProductItem from "../ProductItem/ProductItem";
-
-import Notiflix from "notiflix";
+// import { updateProductsWithActiveField } from "../../utils/productUtils";
+// import Notiflix from "notiflix";
 import authSelectors from "../../redux/auth/auth-selectors";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Favorites = () => {
   const dispatch = useDispatch();
-  const products = useSelector(productsSelectors.getAllProducts);
-  const isLoading = useSelector(productsSelectors.getLoading);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+
+  const userProductsRefresh = useSelector(
+    productsSelectors.getUserProductRefresh
+  );
+  const userProducts = useSelector(productsSelectors.getUserProduct);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(productsOperations.fetchUserProducts());
-  }, [dispatch, isLoggedIn]);
-  const notisCircl = () => {
-    if (!isLoading) {
-      Notiflix.Loading.standard("Loading...");
-    } else {
-      Notiflix.Loading.remove();
-    }
-  };
-
-  notisCircl();
-
-  if (!products) {
-    console.log(products);
+  }, [dispatch]);
+  // const notisCircl = () => {
+  //   if (!isLoading) {
+  //     Notiflix.Loading.standard("Loading...");
+  //   } else {
+  //     Notiflix.Loading.remove();
+  //   }
+  // };
+  // notisCircl();
+  console.log(isLoggedIn);
+  if (!userProductsRefresh) {
     return <div>Загрузка...</div>;
   }
 
@@ -36,7 +37,7 @@ const Favorites = () => {
     <>
       {isLoggedIn ? (
         <ul className={css.list}>
-          {products.map(
+          {userProductsRefresh.map(
             ({
               _id,
               id,
@@ -51,11 +52,9 @@ const Favorites = () => {
               popular,
               onSale,
               discount,
-              favorite,
-              basket,
             }) => (
               <ProductItem
-                key={id}
+                key={_id}
                 _id={_id}
                 id={id}
                 title={title}
@@ -69,16 +68,13 @@ const Favorites = () => {
                 onSale={onSale}
                 popular={popular}
                 discount={discount}
-                favorite={favorite}
-                basket={basket}
-                onAddFavorite={onAddFavorite}
-                onAddBasket={onAddBasket}
+                active={true}
               />
             )
           )}
         </ul>
       ) : (
-        <Navigate to="/login" />
+        navigate("/", { replace: true })
       )}
     </>
   );

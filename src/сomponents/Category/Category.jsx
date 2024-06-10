@@ -1,42 +1,57 @@
-import React from "react";
-import useFetchProductsByCategory from "../../Hooks/usefetchProductsByCategory";
-import css from "./Category.module.css";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import css from "../ProductList/ProductList.module.css";
 import ProductItem from "../ProductItem/ProductItem";
+import { productsOperations, productsSelectors } from "../../redux/Product";
 import { useParams } from "react-router-dom";
 export const Category = () => {
-  const { categoryName } = useParams();
-  const {
-    data: productsData,
-    loading,
-    error,
-  } = useFetchProductsByCategory(categoryName);
-
-  if (loading) {
-    return <div>Загрузка...</div>;
-  }
-
-  if (error || !productsData || !productsData) {
-    return <div>Произошла ошибка при загрузке данных</div>;
-  }
-
-  const { products } = productsData;
+  const dispatch = useDispatch();
+  const params = useParams();
+  const products = useSelector(productsSelectors.getAllProducts);
+  useEffect(() => {
+    dispatch(productsOperations.fetchCategoris(params.categoryName));
+  }, [dispatch, params.categoryName]);
 
   return (
     <main>
-      <div className={css.list}>
-        {products.map(({ id, category, description, image, price, title }) => (
-          <ProductItem
-            key={id}
-            id={id}
-            category={category}
-            description={description}
-            price={price}
-            image={image}
-            title={title}
-            className={css.item}
-          />
-        ))}
-      </div>
+      <ul className={css.list}>
+        {products.map(
+          ({
+            _id,
+            id,
+            title,
+            image,
+            price,
+            description,
+            brand,
+            model,
+            color,
+            category,
+            popular,
+            onSale,
+            discount,
+          
+          }) => (
+            <ProductItem
+              key={id}
+              _id={_id}
+              id={id}
+              title={title}
+              image={image}
+              price={price}
+              description={description}
+              brand={brand}
+              model={model}
+              color={color}
+              category={category}
+              onSale={onSale}
+              popular={popular}
+              discount={discount}
+              
+            />
+          )
+        )}
+      </ul>
     </main>
   );
 };

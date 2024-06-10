@@ -1,35 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import css from "./ProductList.module.css";
-// import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-
-import Notiflix from "notiflix";
+import { useSelector } from "react-redux";
 import ProductItem from "../ProductItem/ProductItem";
-import { productsOperations, productsSelectors } from "../../redux/Product";
-
+import { productsSelectors } from "../../redux/Product";
+import { updateProductsWithActiveField } from "../../utils/productUtils";
 const ProductList = () => {
-  const dispatch = useDispatch();
-  const products = useSelector(productsSelectors.getAllProducts);
-  const isLoading = useSelector(productsSelectors.getLoading);
-  useEffect(() => {
-    dispatch(productsOperations.fetchProducts());
-  }, [dispatch]);
+  const allProducts = useSelector(productsSelectors.getAllProducts);
+  const userProducts = useSelector(productsSelectors.getUserProduct);
 
-  if (!products) {
-    console.log(products);
+  // Функция для обновления продуктов с добавлением поля active
+  const updatedProducts = updateProductsWithActiveField(
+    allProducts,
+    userProducts
+  );
+
+  if (!updatedProducts) {
     return <div>Загрузка...</div>;
   }
-  const notisCircl = () => {
-    if (!isLoading) {
-      Notiflix.Loading.standard("Loading...");
-    } else {
-      Notiflix.Loading.remove();
-    }
-  };
-  notisCircl();
+
   return (
     <ul className={css.list}>
-      {products.map(
+      {updatedProducts.map(
         ({
           _id,
           id,
@@ -44,11 +35,10 @@ const ProductList = () => {
           popular,
           onSale,
           discount,
-          favorite,
-          basket,
+          active,
         }) => (
           <ProductItem
-            key={id}
+            key={_id}
             _id={_id}
             id={id}
             title={title}
@@ -62,8 +52,7 @@ const ProductList = () => {
             onSale={onSale}
             popular={popular}
             discount={discount}
-            favorite={favorite}
-            basket={basket}
+            active={active}
           />
         )
       )}

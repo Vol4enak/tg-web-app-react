@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import {
-  addProductRequest,
-  addProductSuccess,
-  addProductError,
+  userProductRequest,
+  userProductSuccess,
+  userProductError,
   deleteProductRequest,
   deleteProductSuccess,
   deleteProductError,
@@ -14,18 +14,28 @@ import {
   fetchProductsRequest,
   fetchProductsSuccess,
   fetchProductsError,
+  logoutSuccess,
 } from "./product-action";
 
 const items = createReducer([], (builder) => {
   builder
     .addCase(fetchProductsSuccess, (_, { payload }) => payload)
-    .addCase(addProductSuccess, (state, { payload }) => [...state, payload])
+
     .addCase(deleteProductSuccess, (state, { payload }) =>
       state.filter(({ id }) => id !== payload)
-    )
-    .addCase(toggleCompletedSuccess, (state, { payload }) =>
-      state.map((product) => (product.id === payload.id ? payload : product))
     );
+});
+const itemsUserRefresh = createReducer([], (builder) => {
+  builder
+    .addCase(toggleCompletedSuccess, (_, { payload }) => payload)
+    .addCase(logoutSuccess, () => []); // Обрабатываем действие логаута
+});
+
+const itemsUser = createReducer([], (builder) => {
+  builder
+
+    .addCase(userProductSuccess, (_, { payload }) => payload)
+    .addCase(logoutSuccess, () => []); // Обрабатываем действие логаута
 });
 
 const loading = createReducer(false, (builder) => {
@@ -33,9 +43,9 @@ const loading = createReducer(false, (builder) => {
     .addCase(fetchProductsRequest, () => true)
     .addCase(fetchProductsSuccess, () => false)
     .addCase(fetchProductsError, () => false)
-    .addCase(addProductRequest, () => true)
-    .addCase(addProductSuccess, () => false)
-    .addCase(addProductError, () => false)
+    .addCase(userProductRequest, () => true)
+    .addCase(userProductSuccess, () => false)
+    .addCase(userProductError, () => false)
     .addCase(deleteProductRequest, () => true)
     .addCase(deleteProductSuccess, () => false)
     .addCase(deleteProductError, () => false)
@@ -51,13 +61,15 @@ const filter = createReducer("", (builder) => {
 const error = createReducer(null, (builder) => {
   builder
     .addCase(fetchProductsError, (_, { payload }) => payload)
-    .addCase(addProductError, (_, { payload }) => payload)
+    .addCase(userProductError, (_, { payload }) => payload)
     .addCase(deleteProductError, (_, { payload }) => payload)
     .addCase(toggleCompletedError, (_, { payload }) => payload);
 });
 
 export default combineReducers({
   items,
+  itemsUserRefresh,
+  itemsUser,
   filter,
   loading,
   error,
