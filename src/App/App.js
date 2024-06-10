@@ -27,19 +27,21 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className={css.container}>
+    <>
       <header>
         <NavBar />
       </header>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/basket" element={<BasketPage />} />
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/category/:categoryName" element={<CategoryPage />} />
-      </Routes>
-    </div>
+      <div className={css.container}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
+          <Route path="/basket" element={<BasketPage />} />
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/register" element={<RegisterPage />}></Route>
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
+        </Routes>
+      </div>
+    </>
   );
 }
 

@@ -51,18 +51,17 @@ const Modal = ({
           </button>
         </div>
         <div className={css.modal_body}>
-          {/* Вывод информации о продукте */}
           <img src={image} alt={title} className={css.modal_image} />
           <p className={`${css.description} ${css.truncate}`}>{description}</p>
-          <p>Бренд: {brand}</p>
-          <p>Модель: {model}</p>
-          <p>Цвет: {color}</p>
-          <p>Категория: {category}</p>
-          <p>Цена: {price} UAH</p>
+          <p className={css.infoP}>Бренд: {brand}</p>
+          <p className={css.infoP}>Модель: {model}</p>
+          <p className={css.infoP}>Цвет: {color}</p>
+          <p className={css.infoP}>Категория: {category}</p>
+          <p className={css.infoP}>Цена: {price} UAH</p>
 
-          {onSale && <p>Распродажа!</p>}
-          {popular && <p>Популярный товар!</p>}
-          {discount && <p>Скидка: {discount}%</p>}
+          {onSale && <p className={css.infoP}>Распродажа!</p>}
+          {popular && <p className={css.infoP}>Популярный товар!</p>}
+          {discount && <p className={css.infoP}>Скидка: {discount}%</p>}
 
           <button className={css.favorite_btn}>
             {activeFavorite ? "Убрать из избранного" : "Добавить в избранное"}
