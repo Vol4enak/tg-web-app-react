@@ -8,10 +8,6 @@ const userProductRequest = createAction("products/UserProductRequest");
 const userProductSuccess = createAction("products/UserProductSuccess");
 const userProductError = createAction("products/UserProductError");
 
-const deleteProductRequest = createAction("products/deleteProductRequest");
-const deleteProductSuccess = createAction("products/deleteProductSuccess");
-const deleteProductError = createAction("products/deleteProductError");
-
 const toggleCompletedRequest = createAction(
   "products/toggleProductCompletedRequest"
 );
@@ -32,9 +28,6 @@ const productActions = {
   userProductRequest,
   userProductSuccess,
   userProductError,
-  deleteProductRequest,
-  deleteProductSuccess,
-  deleteProductError,
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
