@@ -1,13 +1,16 @@
 import axios from "axios";
 
-import {
+import productActions from "./product-action";
+
+const {
+
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
   fetchProductsRequest,
   fetchProductsSuccess,
   fetchProductsError,
-} from "./product-action";
+} = productActions;
 
 // GET @ /products
 const fetchProducts = () => async (dispatch) => {
@@ -34,7 +37,6 @@ const fetchCategoris = (category) => async (dispatch) => {
   dispatch(fetchProductsRequest());
 
   try {
-    // Передаем категорию в запросе как query параметр
     const { data } = await axios.get(
       `/products/findByCategory?category=${category}`
     );

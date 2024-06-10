@@ -1,10 +1,11 @@
 import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
-import {
+import productActions from "./product-action";
+
+const {
   userProductRequest,
   userProductSuccess,
   userProductError,
-  changeFilter,
   toggleCompletedRequest,
   toggleCompletedSuccess,
   toggleCompletedError,
@@ -12,13 +13,12 @@ import {
   fetchProductsSuccess,
   fetchProductsError,
   logoutSuccess,
-} from "./product-action";
+} = productActions;
 
 const items = createReducer([], (builder) => {
-  builder
-    .addCase(fetchProductsSuccess, (_, { payload }) => payload)
-    
+  builder.addCase(fetchProductsSuccess, (_, { payload }) => payload);
 });
+
 const itemsUser = createReducer([], (builder) => {
   builder
     .addCase(toggleCompletedSuccess, (_, { payload }) => payload)
@@ -38,10 +38,6 @@ const loading = createReducer(false, (builder) => {
     .addCase(toggleCompletedError, () => false);
 });
 
-const filter = createReducer("", (builder) => {
-  builder.addCase(changeFilter, (_, { payload }) => payload);
-});
-
 const error = createReducer(null, (builder) => {
   builder
     .addCase(fetchProductsError, (_, { payload }) => payload)
@@ -52,7 +48,6 @@ const error = createReducer(null, (builder) => {
 export default combineReducers({
   items,
   itemsUser,
-  filter,
   loading,
   error,
 });

@@ -1,25 +1,36 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const fetchProductsRequest = createAction(
-  "products/fetchProductsRequest"
-);
-export const fetchProductsSuccess = createAction(
-  "products/fetchProductsSuccess"
-);
-export const fetchProductsError = createAction("products/fetchProductsError");
+const fetchProductsRequest = createAction("products/fetchProductsRequest");
+const fetchProductsSuccess = createAction("products/fetchProductsSuccess");
+const fetchProductsError = createAction("products/fetchProductsError");
 
-export const userProductRequest = createAction("products/UserProductRequest");
-export const userProductSuccess = createAction("products/UserProductSuccess");
-export const userProductError = createAction("products/UserProductError");
+const userProductRequest = createAction("products/UserProductRequest");
+const userProductSuccess = createAction("products/UserProductSuccess");
+const userProductError = createAction("products/UserProductError");
 
-export const toggleCompletedRequest = createAction(
+const toggleCompletedRequest = createAction(
   "products/toggleProductCompletedRequest"
 );
-export const toggleCompletedSuccess = createAction(
+const toggleCompletedSuccess = createAction(
   "products/toggleProductCompletedSuccess"
 );
-export const toggleCompletedError = createAction(
+const toggleCompletedError = createAction(
   "products/toggleProductCompletedError"
 );
-export const logoutSuccess = createAction("auth/logoutSuccess");
-export const changeFilter = createAction("products/changeFilter");
+
+const logoutSuccess = createAction("auth/logoutSuccess");
+
+const productActions = {
+  fetchProductsRequest,
+  fetchProductsSuccess,
+  fetchProductsError,
+  userProductRequest,
+  userProductSuccess,
+  userProductError,
+  toggleCompletedRequest,
+  toggleCompletedSuccess,
+  toggleCompletedError,
+  logoutSuccess,
+};
+
+export default productActions;
