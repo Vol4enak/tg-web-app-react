@@ -45,7 +45,7 @@ const Modal = ({
               style={{
                 width: "30px",
                 height: "30px",
-                fill: "var(--tg-theme-text-color)",
+                fill: "black",
               }}
             />
           </button>

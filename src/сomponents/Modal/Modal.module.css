@@ -16,7 +16,7 @@
   position: relative;
   background-color: white;
   border-radius: 40px;
-  max-height: 800px;
+  max-height: 600px;
   width: 90%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Тень */
   overflow-y: scroll;
@@ -35,7 +35,7 @@
 
 .close_btn {
   position: fixed;
-  top: 50px;
+  
   right: 50px;
   cursor: pointer;
   background-color: transparent;
