@@ -15,7 +15,7 @@ const ScrollToTopButton = () => {
     if (scrolled > 100 && delta <= 0) {
       setIsVisible(true);
     } else {
-      setIsVisible(false); 
+      setIsVisible(false);
     }
   };
 
@@ -29,7 +29,7 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", 
+      behavior: "smooth",
     });
   };
 
@@ -42,7 +42,13 @@ const ScrollToTopButton = () => {
           }}
           className={css.scrollToTopButton}
         >
-          <FaArrowUp />
+          <FaArrowUp
+            style={{
+              width: "20px",
+              height: "20px",
+              
+            }}
+          />
         </button>
       )}
     </div>

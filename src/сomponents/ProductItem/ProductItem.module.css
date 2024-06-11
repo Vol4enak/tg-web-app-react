@@ -72,5 +72,5 @@
   justify-content: center;
 }
 .noScroll {
-  overflow: hidden;
+  overflow-x: hidden;
 }
