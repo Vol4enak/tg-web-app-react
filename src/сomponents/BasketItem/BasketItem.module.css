@@ -9,7 +9,6 @@
     background-color: #f8f8f8;
 } */
 
-  
 .cart {
   width: 80%;
   max-width: 800px;
@@ -46,12 +45,12 @@
 .item_details h2 {
   margin: 0;
   font-size: 18px;
-  color: var(--tg-theme-button-text-color);
+  color: black;
 }
 
 .item_details p {
   margin: 5px 0;
-  color: var(--tg-theme-button-text-color);
+  color: black;
 }
 
 .price {
