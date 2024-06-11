@@ -54,7 +54,6 @@ const Home = () => {
     return <div>Загрузка...</div>;
   }
   const slicedProducts = filteredProducts.slice(0, loadedProductsCount);
-  console.log(slicedProducts);
   return (
     <>
       <ProductList products={slicedProducts} />

@@ -51,6 +51,6 @@
 }
 
 .noScroll {
-  overflow-x: hidden;
+  overflow: hidden;
 
 }
