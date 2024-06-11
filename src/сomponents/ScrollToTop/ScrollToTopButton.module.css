@@ -1,0 +1,19 @@
+/* Ваш файл стилей (например, ScrollToTopButton.module.css) */
+
+.scrollToTopButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .scrollToTopButton:hover {
+    background-color: #0056b3;
+  }
+  

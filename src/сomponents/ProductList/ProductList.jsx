@@ -2,6 +2,7 @@ import React from "react";
 import ProductItem from "../ProductItem/ProductItem";
 import css from "./ProductList.module.css";
 
+
 const ProductList = ({ products }) => {
   return (
     <ul className={css.list}>

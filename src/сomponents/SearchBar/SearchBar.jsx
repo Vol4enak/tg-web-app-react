@@ -1,17 +1,19 @@
-import React, { useState } from "react";
-import styles from "./SearchBar.module.css";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { FaSearch } from "react-icons/fa";
+import styles from "./SearchBar.module.css";
+import { productActions } from "../../redux/Product";
+
 function SearchBar() {
-  // eslint-disable-next-line no-unused-vars
-  const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch();
 
   const onChangeInput = (e) => {
-    setInputValue(e.target.value);
+    dispatch(productActions.setSearchQuery(e.target.value));
   };
-  console.log(inputValue);
+
   return (
     <>
-      <form className={styles.searchForm}>
+      <form className={styles.searchForm} onSubmit={(e) => e.preventDefault()}>
         <input
           type="text"
           className={styles.searchInput}

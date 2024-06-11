@@ -6,6 +6,7 @@ import { filterActiveUserBasketProducts } from "../../utils/filterActiveBasketPr
 import ProductList from "../ProductList/ProductList";
 import { productsOperations } from "../../redux/Product";
 import { useNavigate } from "react-router-dom";
+import css from "./Basket.module.css";
 const Basket = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const isToken = useSelector(authSelectors.getUserToken);
@@ -34,6 +35,17 @@ const Basket = () => {
     console.log(updatedProducts);
     return <div>Загрузка...</div>;
   }
-  return <ProductList products={updatedProducts} />;
+  return (
+    <>
+      {updatedProducts.length ? (
+        <>
+          <h2 className={css.basketTitle}>Кошик.</h2>
+          <ProductList products={updatedProducts} />
+        </>
+      ) : (
+        <h2 className={css.basketTitle}>Кошик порожній.</h2>
+      )}
+    </>
+  );
 };
 export default Basket;

@@ -1,12 +1,12 @@
 export const filterActiveUserProducts = (allProducts, userProducts, userProductBasket) => {
 
   if (!Array.isArray(userProducts)) {
-    console.error();
+    
     return [];
   }
 
   if (!Array.isArray(userProductBasket)) {
-    console.error();
+  
     return [];
   }
 

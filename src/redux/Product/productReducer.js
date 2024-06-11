@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import productActions from "./productAction";
 
 const {
+  setSearchQuery,
   userProductRequest,
   userProductSuccess,
   userProductError,
@@ -37,6 +38,9 @@ const loading = createReducer(false, (builder) => {
     .addCase(toggleCompletedSuccess, () => false)
     .addCase(toggleCompletedError, () => false);
 });
+const searchQuery = createReducer("", (builder) => {
+  builder.addCase(setSearchQuery, (_, { payload }) => payload);
+});
 
 const error = createReducer(null, (builder) => {
   builder
@@ -50,4 +54,5 @@ export default combineReducers({
   itemsUser,
   loading,
   error,
+  searchQuery,
 });

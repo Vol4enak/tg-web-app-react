@@ -19,7 +19,7 @@ const toggleCompletedError = createAction(
 );
 
 const logoutSuccess = createAction("auth/logoutSuccess");
-
+const setSearchQuery = createAction("products/setSearchQuery");
 const productActions = {
   fetchProductsRequest,
   fetchProductsSuccess,
@@ -31,6 +31,7 @@ const productActions = {
   toggleCompletedSuccess,
   toggleCompletedError,
   logoutSuccess,
+  setSearchQuery,
 };
 
 export default productActions;

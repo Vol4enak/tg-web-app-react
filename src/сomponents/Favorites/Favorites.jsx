@@ -4,6 +4,7 @@ import ProductList from "../ProductList/ProductList";
 import { productsOperations, productsSelectors } from "../../redux/Product";
 import { filterActiveUserProducts } from "../../utils/filterActiveUserProduct";
 // import Notiflix from "notiflix";
+import css from "./Favorites.module.css";
 import authSelectors from "../../redux/auth/auth-selectors";
 import { useNavigate } from "react-router-dom";
 
@@ -44,7 +45,18 @@ const Favorites = () => {
     return <div>Загрузка...</div>;
   }
 
-  return <ProductList products={updatedProducts} />;
+  return (
+    <>
+      {updatedProducts.length ? (
+        <>
+          <h2 className={css.favoriteTitleEmpty}>Вподобайки.</h2>
+          <ProductList products={updatedProducts} />
+        </>
+      ) : (
+        <h2 className={css.favoriteTitleEmpty}>Cписок вподобайок порожній.</h2>
+      )}
+    </>
+  );
 };
 
 export default Favorites;

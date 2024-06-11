@@ -12,10 +12,12 @@ const {
 } = productActions;
 
 // GET @ /products
-const fetchProducts = () => async (dispatch) => {
+const fetchProducts = (page, limit) => async (dispatch) => {
   dispatch(fetchProductsRequest());
   try {
-    const { data } = await axios.get("/products/data");
+    const { data } = await axios.get(
+      `/products/data`
+    );
     dispatch(fetchProductsSuccess(data));
   } catch (error) {
     dispatch(fetchProductsError(error.message));
