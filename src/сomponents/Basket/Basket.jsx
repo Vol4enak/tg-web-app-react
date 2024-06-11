@@ -6,7 +6,6 @@ import { filterActiveUserBasketProducts } from "../../utils/filterActiveBasketPr
 import BasketItem from "../BasketItem/BasketItem";
 import { productsOperations } from "../../redux/Product";
 import { useNavigate } from "react-router-dom";
-import Notiflix from "notiflix";
 import ModalSucsses from "../Modal/ModalSucsses";
 import useClickOutside from "../../Hooks/useClickOutside";
 import useToggle from "../../Hooks/useToggle";
