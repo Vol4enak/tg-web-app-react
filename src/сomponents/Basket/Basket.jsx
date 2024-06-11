@@ -74,13 +74,15 @@ const Basket = () => {
             className={css.confirmBtn}
             onClick={() => {
               setIsVisibleSuc(true);
-              
             }}
           >
             Замовити
           </button>
           {isVisibleSuc && (
-            <ModalSucsses navref={navref} setIsVisibleSuc={setIsVisibleSuc} />
+            <>
+              <h2 className={css.basketTitle}>Кошик замовлень.</h2>
+              <ModalSucsses navref={navref} setIsVisibleSuc={setIsVisibleSuc} />
+            </>
           )}
         </>
       ) : (
