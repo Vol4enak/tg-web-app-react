@@ -3,13 +3,15 @@ import { authOperations, authSelectors } from "../../redux/auth";
 import css from "./RegisterForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-export const RegisterForm = ({ onSubmit }) => {
+import Notiflix from "notiflix";
+export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const isToken = useSelector(authSelectors.getUserToken);
+  const nameUser = useSelector(authSelectors.getUsername);
   const error = useSelector(authSelectors.getUserErrorReg);
   // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const handleChange = (e) => {
@@ -41,10 +43,11 @@ export const RegisterForm = ({ onSubmit }) => {
   };
   useEffect(() => {
     if (isToken) {
+      Notiflix.Notify.success(`Welcome ${nameUser}!!!`);
       navigate("/", { replace: true });
       reset();
     }
-  }, [isToken, navigate]);
+  }, [isToken, nameUser, navigate]);
 
   return (
     <div className={css.register_container}>
@@ -78,9 +81,9 @@ export const RegisterForm = ({ onSubmit }) => {
         <p>
           Already have account? <a href="/login">login!</a>
         </p>
-        {error &&
+        {error && (
           <div style={{ color: "red", marginTop: "10px" }}>{error}</div>
-        }
+        )}
       </form>
     </div>
   );

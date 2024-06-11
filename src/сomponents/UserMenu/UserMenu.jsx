@@ -1,23 +1,26 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { authOperations, authSelectors } from "../../redux/auth";
-import css from "./UserMenu.module.css";
-const UserMenu = () => {
-  const dispatch = useDispatch();
-  const name = useSelector(authSelectors.getUsername);
 
+import { useDispatch } from "react-redux";
+import { authOperations } from "../../redux/auth";
+import css from "./UserMenu.module.css";
+import { useNavigate } from "react-router-dom";
+const UserMenu = ({ setIsVisibleMenu }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(authOperations.logOut());
+    navigate("/", { replace: true });
   };
 
   return (
-    <div className={css.welcome_container}>
-      <span className={css.welcome_message}>Welcome, {name}</span>
+    <div>
       <button
         className={css.logout_button}
         type="button"
-        onClick={handleLogout}
+        onClick={() => {
+          setIsVisibleMenu(false);
+          handleLogout();
+        }}
       >
         Log out
       </button>

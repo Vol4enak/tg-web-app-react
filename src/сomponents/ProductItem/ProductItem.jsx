@@ -6,7 +6,7 @@ import { HiShoppingCart } from "react-icons/hi";
 import { useSelector, useDispatch } from "react-redux";
 import { authSelectors } from "../../redux/auth";
 import { onAddBasket, onAddFavorite } from "../../redux/Product/productHelper";
-import Modal from "../Modal/Modal";
+import ModalItem from "../Modal/ModalItem";
 import useToggle from "../../Hooks/useToggle";
 const ProductItem = ({
   _id,
@@ -29,7 +29,7 @@ const ProductItem = ({
   const dispatch = useDispatch();
   const [isVisibleModal, setIsVisibleModal] = useToggle(false);
 
-  const navRef = useClickOutside(
+  const navref = useClickOutside(
     isVisibleModal,
     () => {
       setIsVisibleModal(false);
@@ -117,14 +117,14 @@ const ProductItem = ({
       <div className={css.productItemHelper}>
         <p className={css.titles}>{truncateString(title, 18)}</p>
         <p className={css.price}>
-          <span >
+          <span>
             ціна: <b>{price} UAH</b>
           </span>
         </p>
       </div>
       {isVisibleModal && (
-        <Modal
-          navRef={navRef}
+        <ModalItem
+          navref={navref}
           key={_id}
           _id={_id}
           id={id}

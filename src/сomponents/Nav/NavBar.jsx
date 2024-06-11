@@ -9,7 +9,7 @@ import Notiflix from "notiflix";
 import useToggle from "../../Hooks/useToggle";
 import useClickOutside from "../../Hooks/useClickOutside";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
-import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import ModalMenu from "../Modal/ModalMenu";
 import { authSelectors } from "../../redux/auth";
 import css from "./NavBar.module.css";
 
@@ -18,7 +18,7 @@ function NavBar() {
   const [isVisibleCategory, setIsVisibleCategory] = useToggle(false);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
-  const navRef = useClickOutside(
+  const navref = useClickOutside(
     isVisibleMenu,
     () => {
       setIsVisibleMenu(false);
@@ -46,7 +46,7 @@ function NavBar() {
             onClick={() => {
               setIsVisibleCategory(true);
             }}
-            navRef={navRef}
+            navref={navref}
           >
             <TbCategory
               style={{
@@ -118,7 +118,7 @@ function NavBar() {
         </button>
       </nav>
       {isVisibleMenu && (
-        <BurgerMenu navRef={navRef} setIsVisibleMenu={setIsVisibleMenu} />
+        <ModalMenu navref={navref} setIsVisibleMenu={setIsVisibleMenu} />
       )}
     </div>
   );

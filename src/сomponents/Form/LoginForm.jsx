@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { authOperations, authSelectors } from "../../redux/auth";
+import Notiflix from "notiflix";
 import css from "./LoginForm.module.css";
 
 export const LoginForm = () => {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const nameUser = useSelector(authSelectors.getUsername);
   const error = useSelector(authSelectors.getUserErrorLogin);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,10 +42,11 @@ export const LoginForm = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
+      Notiflix.Notify.success(`Welcome ${nameUser}!!!`);
       navigate("/", { replace: true });
       reset();
     }
-  }, [isLoggedIn, navigate]);
+  }, [isLoggedIn, nameUser, navigate]);
 
   return (
     <>

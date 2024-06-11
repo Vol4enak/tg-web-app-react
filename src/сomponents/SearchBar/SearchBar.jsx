@@ -8,7 +8,7 @@ function SearchBar() {
   const onChangeInput = (e) => {
     setInputValue(e.target.value);
   };
-
+  console.log(inputValue);
   return (
     <>
       <form className={styles.searchForm}>

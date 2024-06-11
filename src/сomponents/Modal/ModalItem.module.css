@@ -35,7 +35,7 @@
 
 .close_btn {
   position: fixed;
-  
+
   right: 50px;
   cursor: pointer;
   background-color: transparent;
@@ -58,6 +58,7 @@
 
 .favorite_btn,
 .basket_btn {
+  width: 165px;
   margin-top: 10px;
   padding: 8px 16px;
   border: none;
@@ -66,12 +67,12 @@
 }
 
 .favorite_btn {
-  background-color: #ff4d4d; /* Красный цвет для кнопки добавить/удалить из избранного */
+  transition: background-color 0.5s ease; /* Красный цвет для кнопки добавить/удалить из избранного */
   color: white;
 }
 
 .basket_btn {
-  background-color: #00cc66; /* Зеленый цвет для кнопки добавить/удалить из корзины */
+  transition: background-color 0.5s ease; /* Зеленый цвет для кнопки добавить/удалить из корзины */
   color: white;
 }
 
@@ -123,4 +124,11 @@
 
 .modal_content {
   animation: fadeIn 0.3s ease;
+}
+
+.boxAddHelper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
