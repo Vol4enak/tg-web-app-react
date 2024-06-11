@@ -4,3 +4,36 @@
   width: max-content;
   color: var(--tg-theme-button-text-color);
 }
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+}
+.confirmBtn {
+  background-color: #007bff; /* Основной цвет кнопки */
+  color: white; /* Цвет текста */
+  border: none; /* Убираем границу */
+  padding: 10px 20px; /* Внутренние отступы */
+  font-size: 16px; /* Размер текста */
+  font-weight: bold; /* Жирный текст */
+  border-radius: 4px; /* Скругленные углы */
+  cursor: pointer; /* Указатель при наведении */
+  transition: background-color 0.3s, transform 0.2s; /* Анимация */
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 30px;
+}
+.confirmBtn:hover {
+  background-color: #0056b3; /* Цвет при наведении */
+}
+
+.confirmBtn:active {
+  transform: scale(0.95); /* Эффект нажатия */
+}
+
+.confirmBtn:focus {
+  outline: none; /* Убираем стандартный фокус */
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.5); /* Пользовательский фокус */
+}
