@@ -16,8 +16,8 @@ const Home = () => {
   const allProducts = useSelector(productsSelectors.getAllProducts);
   const userProducts = useSelector(productsSelectors.getUserProduct);
   const userBasketProducts = useSelector(productsSelectors.getUserBasket);
-  const [loadedProductsCount, setLoadedProductsCount] = useState(15); // Начальное количество загруженных продуктов
-  const productsPerPage = 15; // Количество продуктов, загружаемых за раз
+  const [loadedProductsCount, setLoadedProductsCount] = useState(15); 
+  const productsPerPage = 15; 
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -28,13 +28,7 @@ const Home = () => {
     };
   }, [dispatch, isLoggedIn]);
 
-  // useEffect(() => {
-  //   dispatch(
-  //     productsOperations.fetchProducts(pageProductsCount, loadedProductsCount)
-  //   );
-  // }, [dispatch, loadedProductsCount, pageProductsCount]);
-
-  const query = useSelector(productsSelectors.getQuery); // получаем значение query из состояния
+  const query = useSelector(productsSelectors.getQuery); 
 
   const updatedProducts = updateProductsWithActiveField(
     allProducts,

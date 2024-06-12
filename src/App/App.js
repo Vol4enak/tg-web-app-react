@@ -20,8 +20,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     tg.ready();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [tg]);
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductList from "../ProductList/ProductList";
 import { productsOperations, productsSelectors } from "../../redux/Product";
 import { filterActiveUserProducts } from "../../utils/filterActiveUserProduct";
-// import Notiflix from "notiflix";
 import css from "./Favorites.module.css";
 import authSelectors from "../../redux/auth/auth-selectors";
 import { useNavigate } from "react-router-dom";
@@ -32,14 +31,6 @@ const Favorites = () => {
     userProducts,
     userBasketProducts
   );
-  // const notisCircl = () => {
-  //   if (!isLoading) {
-  //     Notiflix.Loading.standard("Loading...");
-  //   } else {
-  //     Notiflix.Loading.remove();
-  //   }
-  // };
-  // notisCircl();
 
   if (!updatedProducts) {
     return <div>Загрузка...</div>;
